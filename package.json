@@ -1,0 +1,31 @@
+{
+  "name": "dialog",
+  "version": "1.0.0",
+  "description": "支持iframe的弹出层，自定义样式",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleverche/dialog.git"
+  },
+  "keywords": [
+    "css",
+    "javascript",
+    "js",
+    "plugin"
+  ],
+  "author": "Lucky.Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cleverche/dialog/issues"
+  },
+  "homepage": "https://github.com/cleverche/dialog#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
