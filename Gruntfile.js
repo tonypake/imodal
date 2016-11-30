@@ -1,3 +1,9 @@
+/*!
+ * Dialog's Gruntfile
+ * https://github.com/cleverche/dialog
+ * Copyright 2016-2017 The Dialog Authors
+ * Licensed under MIT (https://github.com/cleverche/dialog/blob/master/LICENSE)
+ */
 //包含了整个Grunt配置信息
 module.exports = function(grunt) {
 	//初始化 configuration配置对象
