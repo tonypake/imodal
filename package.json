@@ -2,7 +2,7 @@
   "name": "dialog",
   "version": "1.0.0",
   "description": "支持iframe的弹出层，自定义样式",
-  "main": "dist/js/dialog",
+  "main": "dialog.css,dialog.js",
   "scripts": {
     "test": "test"
   },
@@ -15,7 +15,7 @@
     "javascript",
     "js",
     "plugin",
-	"web"
+    "web"
   ],
   "author": "Lucky.Chen",
   "license": "MIT",
@@ -24,15 +24,20 @@
   },
   "homepage": "https://github.com/cleverche/dialog#readme",
   "devDependencies": {
-    "grunt": "^1.0.1"
+    "bower": "^1.8.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0"
   },
   "dependencies": {
-    "jquery": "^3.1.1"
+    "jquery": "^1.9.1"
   },
-  "files":[
-	"dist",
-    "js/**/*.js",
-    "css/**/*.css",
+  "files": [
+    "dist",
+    "dist/js/**/*.js",
+    "dist/css/**/*.css",
     "Gruntfile.js",
     "LICENSE"
   ]

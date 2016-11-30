@@ -25,29 +25,47 @@ module.exports = function(grunt) {
 			dist: 'dist',
 			docs: 'docs/dist'
 		},
-		//connect服务器
+		//静态文件服务器
 		connect: {
+			options: {
+				port: 3000,
+				hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
+				base: '.',
+				livereload: 35729  //声明给 watch 监听的端口
+			},
 			server: {
 				options: {
-					port: 3000,
-					base: '.'
+					open: true //自动打开网页 http://
 				}
 			}
 		},
+		//监视文件的改变
+		watch: {
+			files: ['<%= jshint.files %>'],
+			tasks: ['jshint'],
+			livereload: {
+				options: {
+					livereload: '<%=connect.options.livereload%>'  //监听前面声明的端口  35729
+				},
+				files: [  //下面文件的改变就会实时刷新网页
+					'index.html',
+					'<%= pkg.name %>.css',
+					'<%= pkg.name %>.js'
+				]
+			}
+		},
 		jshint: {
-		  files: ['Gruntfile.js', 'src/**/*.js', 'examples/**/*.js'],
+		  files: ['Gruntfile.js', 'dist/**/*.js', 'examples/**/*.js'],
 		  options: {
 			globals: {
 			  jQuery: true
 			}
 		  }
-		},
-		watch: {
-		  files: ['<%= jshint.files %>'],
-		  tasks: ['jshint']
 		}
+		
 	});
-
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
