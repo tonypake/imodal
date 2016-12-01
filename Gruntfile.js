@@ -31,6 +31,7 @@ module.exports = function(grunt) {
 				port: 3000,
 				hostname: '*', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
 				base: '.',
+				keepalive: true,
 				livereload: 35729  //声明给 watch 监听的端口
 			},
 			server: {
@@ -41,7 +42,7 @@ module.exports = function(grunt) {
 		},
 		//监视文件的改变
 		watch: {
-			files: ['<%= jshint.files %>'],
+			files: ['<%= pkg.name %>.css','<%= pkg.name %>.js'],
 			tasks: ['jshint'],
 			livereload: {
 				options: {
@@ -61,13 +62,42 @@ module.exports = function(grunt) {
 			  jQuery: true
 			}
 		  }
+		},
+		cssmin: {
+			options: {
+				compatibility: 'ie9,-properties.zeroUnits',
+				sourceMap: true,
+				// sourceMapInlineSources: true,
+				advanced: false
+			},
+			core: {
+				files: [{
+					expand: true,
+					cwd: 'dist/css',
+					src: ['*.css', '!*.min.css'],
+					dest: 'dist/css',
+					ext: '.min.css'
+				}]
+			},
+			docs: {
+				files: [{
+					expand: true,
+					cwd: 'docs/assets/css',
+					src: ['*.css', '!*.min.css'],
+					dest: 'docs/assets/css',
+					ext: '.min.css'
+				}]
+			}
 		}
-		
 	});
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	grunt.registerTask('default', ['jshint']);
+	grunt.registerTask('dist-css', ['sass-compile', 'exec:postcss', 'cssmin:core', 'cssmin:docs']);
+	grunt.registerTask('dist', ['clean:dist', 'dist-css', 'dist-js']);
+	grunt.registerTask('serve', ['connect:server','watch']);
 };
