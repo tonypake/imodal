@@ -51,8 +51,6 @@ if (typeof jQuery === 'undefined') {
 			if(this === $){
 				parentDom = body;
 			}
-			//console.log(parentDom);
-			
 		}
 	};
 	var dialog = $.fn.dialog = function(){
