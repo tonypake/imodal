@@ -2,6 +2,10 @@
 *.log
 *.zip
 
+# OS or Editor folders
+.idea
+.project
+
 # Folders to ignore
 bower_components
 node_modules
