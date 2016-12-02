@@ -3,17 +3,17 @@ if (typeof jQuery === 'undefined') {
 }
 
 ;(function($){
-	//jQuery°æ±¾ÅÐ¶Ï£¬×îµÍ1.9
+	//jQueryç‰ˆæœ¬åˆ¤æ–­ï¼Œæœ€ä½Ž1.9
 	var version = $.fn.jquery.split(' ')[0].split('.');
 	if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {
 		throw new Error('Dialog\'s JavaScript requires jQuery version 1.9.1 or higher');
 	}
 	var dialogOptions = {
-		/****ÒÔÏÂÊôÐÔÒÔÍÕ·åÊÇÐ´·¨£¬¿ÉÒÔÔÚµ÷ÓÃshow()·½·¨Ç°ÉèÖÃÖµ****/
+		/****ä»¥ä¸‹å±žæ€§ä»¥é©¼å³°æ˜¯å†™æ³•ï¼Œå¯ä»¥åœ¨è°ƒç”¨show()æ–¹æ³•å‰è®¾ç½®å€¼****/
 		id : null,
-		width : 500,									//µ¯³ö²ãµÄ¿í
-		height : 300,									//µ¯³ö²ãµÄ¸ß
-		className:'',									//µ¯³ö²ã×îÍâ²ãµÄÑùÊ½£¬¿ÉÒÔÑ¡Ôñ¸²¸Ç£¬Ò²¿ÉÒÔ×·¼ÓÐÂÑùÊ½
+		width : 500,									//å¼¹å‡ºå±‚çš„å®½
+		height : 300,									//å¼¹å‡ºå±‚çš„é«˜
+		className:'',									//å¼¹å‡ºå±‚æœ€å¤–å±‚çš„æ ·å¼ï¼Œå¯ä»¥é€‰æ‹©è¦†ç›–ï¼Œä¹Ÿå¯ä»¥è¿½åŠ æ–°æ ·å¼
 		url : null,
 		onLoad : null,
 		innerHtml : "",
@@ -21,8 +21,8 @@ if (typeof jQuery === 'undefined') {
 		top : "50%",
 		left : "50%",
 		title : "",
-		okEvent : null, //µã»÷È·¶¨ºóµ÷ÓÃµÄ·½·¨
-		cancelEvent : null, //µã»÷È¡Ïû¼°¹Ø±Õºóµ÷ÓÃµÄ·½·¨
+		okEvent : null, //ç‚¹å‡»ç¡®å®šåŽè°ƒç”¨çš„æ–¹æ³•
+		cancelEvent : null, //ç‚¹å‡»å–æ¶ˆåŠå…³é—­åŽè°ƒç”¨çš„æ–¹æ³•
 		showButtonRow : false,
 		messageIcon : "window.gif",
 		messageTitle : "",
@@ -34,7 +34,7 @@ if (typeof jQuery === 'undefined') {
 		showCloseButton : true,
 		animator : true,
 		zIndex : 900,
-		/****ÒÔÏÂÊôÐÔÒÔ´óÐ´¿ªÍ·£¬²»Òª×ÔÐÐ¸Ä±ä****/
+		/****ä»¥ä¸‹å±žæ€§ä»¥å¤§å†™å¼€å¤´ï¼Œä¸è¦è‡ªè¡Œæ”¹å˜****/
 		DialogDiv : null,
 		BGDiv : null,
 		ParentWindow : null,
