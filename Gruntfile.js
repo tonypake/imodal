@@ -1,8 +1,8 @@
 /*!
  * Dialog's Gruntfile
- * https://github.com/cleverche/dialog
+ * https://github.com/cleverche/iModal
  * Copyright 2016-2017 The Dialog Authors
- * Licensed under MIT (https://github.com/cleverche/dialog/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)
  */
 //包含了整个Grunt配置信息
 module.exports = function(grunt) {
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 		banner: '/*!\n' +
             ' * Dialog v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
             ' * Copyright 2016-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-            ' * Licensed under MIT (https://github.com/cleverche/dialog/blob/master/LICENSE)\n' +
+            ' * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)\n' +
             ' */\n',
 		//任务配置
 		//清除内容任务

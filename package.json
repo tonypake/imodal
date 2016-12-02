@@ -1,14 +1,14 @@
 {
-  "name": "dialog",
+  "name": "iModal",
   "version": "1.0.0",
   "description": "支持iframe的弹出层，自定义样式",
-  "main": "dialog.css,dialog.js",
+  "main": "src/css/iModal.css,src/js/iModal.js,src/js/iModal.jQuery.js",
   "scripts": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cleverche/dialog.git"
+    "url": "git+https://github.com/cleverche/iModal.git"
   },
   "keywords": [
     "css",
@@ -20,9 +20,9 @@
   "author": "Lucky.Chen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cleverche/dialog/issues"
+    "url": "https://github.com/cleverche/iModal/issues"
   },
-  "homepage": "https://github.com/cleverche/dialog#readme",
+  "homepage": "https://github.com/cleverche/iModal#readme",
   "devDependencies": {
     "bower": "^1.8.0",
     "grunt": "^1.0.1",

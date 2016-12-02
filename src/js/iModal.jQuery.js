@@ -48,9 +48,7 @@ if (typeof jQuery === 'undefined') {
 		init : function(arg){
 			var parentDom = this;
 			
-			if(this === $){
-				parentDom = body;
-			}
+			
 		}
 	};
 	var dialog = $.fn.dialog = function(){
@@ -67,12 +65,10 @@ if (typeof jQuery === 'undefined') {
 			if(arg1 && $.isPlainObject(arg1)){
 				options = $.extend(dialogOptions,arg1);
 			}
-			if(this == $) {
-				this = body;
-			}
 			
-			return this.each(function () {
-				console.log(this);
+			var dom = this;
+			if(this == $) dom = $("body");
+			return dom.each(function () {
 				dialogMethods.init.call(this,options);
 			});
 		}

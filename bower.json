@@ -1,7 +1,7 @@
 {
-  "name": "dialog",
+  "name": "iModal",
   "description": "支持iframe的弹出层，自定义样式",
-  "main": "dialog.css,dialog.js",
+  "main": "src/css/iModal.css,src/js/iModal.js,src/js/iModal.jQuery.js",
   "authors": [
     "Lucky.Chen"
   ],
@@ -13,7 +13,7 @@
     "plugin",
     "web"
   ],
-  "homepage": "https://github.com/cleverche/dialog",
+  "homepage": "https://github.com/cleverche/iModal",
   "ignore": [
     "**/.*",
     "node_modules",
