@@ -4,100 +4,123 @@
  * Copyright 2016-2017 The Dialog Authors
  * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)
  */
-//°üº¬ÁËÕû¸öGruntÅäÖÃĞÅÏ¢
+//åŒ…å«äº†æ•´ä¸ªGrunté…ç½®ä¿¡æ¯
 module.exports = function(grunt) {
-	//jsÊ¹ÓÃÑÏ¸ñÄ£Ê½
-	'use strict';
-	
-	//³õÊ¼»¯ configurationÅäÖÃ¶ÔÏó
-	grunt.initConfig({
-		//´Ópackage.json ÎÄ¼ş¶ÁÈëÏîÄ¿ÅäÖÃĞÅÏ¢£¬²¢´æÈëpkg ÊôĞÔÄÚ¡£ÕâÑù¾Í¿ÉÒÔÈÃÎÒÃÇ·ÃÎÊµ½package.jsonÎÄ¼şÖĞÁĞ³öµÄÊôĞÔÁË
-		pkg: grunt.file.readJSON('package.json'),
-		//ÎÄ¼ş¿ªÍ·µÄbanner
-		banner: '/*!\n' +
-            ' * Dialog v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-            ' * Copyright 2016-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-            ' * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)\n' +
-            ' */\n',
-		//ÈÎÎñÅäÖÃ
-		//Çå³ıÄÚÈİÈÎÎñ
-		clean: {
-			dist: 'dist',
-			docs: 'docs/dist'
-		},
-		//¾²Ì¬ÎÄ¼ş·şÎñÆ÷
-		connect: {
-			options: {
-				port: 3000,
-				hostname: '*', //Ä¬ÈÏ¾ÍÊÇÕâ¸öÖµ£¬¿ÉÅäÖÃÎª±¾»úÄ³¸ö IP£¬localhost »òÓòÃû
-				base: '.',
-				keepalive: true,
-				livereload: 35729  //ÉùÃ÷¸ø watch ¼àÌıµÄ¶Ë¿Ú
-			},
-			server: {
-				options: {
-					open: true //×Ô¶¯´ò¿ªÍøÒ³ http://
-				}
-			}
-		},
-		//¼àÊÓÎÄ¼şµÄ¸Ä±ä
-		watch: {
-			files: ['<%= pkg.name %>.css','<%= pkg.name %>.js'],
-			tasks: ['jshint'],
-			livereload: {
-				options: {
-					livereload: '<%=connect.options.livereload%>'  //¼àÌıÇ°ÃæÉùÃ÷µÄ¶Ë¿Ú  35729
-				},
-				files: [  //ÏÂÃæÎÄ¼şµÄ¸Ä±ä¾Í»áÊµÊ±Ë¢ĞÂÍøÒ³
-					'index.html',
-					'<%= pkg.name %>.css',
-					'<%= pkg.name %>.js'
-				]
-			}
-		},
-		jshint: {
-		  files: ['Gruntfile.js', 'dist/**/*.js', 'examples/**/*.js'],
-		  options: {
-			globals: {
-			  jQuery: true
-			}
-		  }
-		},
-		cssmin: {
-			options: {
-				compatibility: 'ie9,-properties.zeroUnits',
-				sourceMap: true,
-				// sourceMapInlineSources: true,
-				advanced: false
-			},
-			core: {
-				files: [{
-					expand: true,
-					cwd: 'dist/css',
-					src: ['*.css', '!*.min.css'],
-					dest: 'dist/css',
-					ext: '.min.css'
-				}]
-			},
-			docs: {
-				files: [{
-					expand: true,
-					cwd: 'docs/assets/css',
-					src: ['*.css', '!*.min.css'],
-					dest: 'docs/assets/css',
-					ext: '.min.css'
-				}]
-			}
-		}
-	});
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
+    //jsä½¿ç”¨ä¸¥æ ¼æ¨¡å¼
+    'use strict';
 
-	grunt.registerTask('default', ['jshint']);
-	grunt.registerTask('dist-css', ['sass-compile', 'exec:postcss', 'cssmin:core', 'cssmin:docs']);
-	grunt.registerTask('dist', ['clean:dist', 'dist-css', 'dist-js']);
-	grunt.registerTask('serve', ['connect:server','watch']);
+    //åˆå§‹åŒ– configurationé…ç½®å¯¹è±¡
+    grunt.initConfig({
+        //ä»package.json æ–‡ä»¶è¯»å…¥é¡¹ç›®é…ç½®ä¿¡æ¯ï¼Œå¹¶å­˜å…¥pkg å±æ€§å†…ã€‚è¿™æ ·å°±å¯ä»¥è®©æˆ‘ä»¬è®¿é—®åˆ°package.jsonæ–‡ä»¶ä¸­åˆ—å‡ºçš„å±æ€§äº†
+        pkg: grunt.file.readJSON('package.json'),
+        //æ–‡ä»¶å¼€å¤´çš„banner
+        banner: '/*!\n' +
+        ' * Dialog v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+        ' * Copyright 2016-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+        ' * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)\n' +
+        ' */\n',
+        //ä»»åŠ¡é…ç½®
+        //æ¸…é™¤å†…å®¹ä»»åŠ¡
+        clean: {
+            dist: 'dist',
+            docs: 'docs/dist'
+        },
+        concat: {
+            options: {
+                // Custom function to remove all export and import statements
+                process: function (src) {
+                    return src.replace(/^(export|import).*/gm, '');
+                }
+            },
+            dist: {
+                src: [
+                    'src/js/<%= pkg.name %>.jQuery.js',
+                ],
+                dest: 'dist/js/<%= pkg.name %>.jQuery.min.js'
+            }
+        },
+        uglify: {
+            options: {
+                banner:'<%= banner %>',
+                compress: {
+                    warnings: false
+                },
+                mangle: true,
+                preserveComments: /^!|@preserve|@license|@cc_on/i
+            },
+            core: {
+                src: 'src/js/<%= pkg.name %>.jQuery.js',
+                dest: 'dist/js/<%= pkg.name %>.jQuery.min.js'
+            }
+        },
+        //é™æ€æ–‡ä»¶æœåŠ¡å™¨
+        connect: {
+            options: {
+                port: 3000,
+                hostname: '*', //é»˜è®¤å°±æ˜¯è¿™ä¸ªå€¼ï¼Œå¯é…ç½®ä¸ºæœ¬æœºæŸä¸ª IPï¼Œlocalhost æˆ–åŸŸå
+                base: '.',
+                keepalive: true,
+                livereload: 35729  //å£°æ˜ç»™ watch ç›‘å¬çš„ç«¯å£
+            },
+            server: {
+                options: {
+                    open: true //è‡ªåŠ¨æ‰“å¼€ç½‘é¡µ http://
+                }
+            }
+        },
+        //ç›‘è§†æ–‡ä»¶çš„æ”¹å˜
+        watch: {
+            files: ['<%= pkg.name %>.css','<%= pkg.name %>.js'],
+            tasks: ['jshint'],
+            livereload: {
+                options: {
+                    livereload: '<%=connect.options.livereload%>'  //ç›‘å¬å‰é¢å£°æ˜çš„ç«¯å£  35729
+                },
+                files: [  //ä¸‹é¢æ–‡ä»¶çš„æ”¹å˜å°±ä¼šå®æ—¶åˆ·æ–°ç½‘é¡µ
+                    'index.html',
+                    '<%= pkg.name %>.css',
+                    '<%= pkg.name %>.js'
+                ]
+            }
+        },
+        jshint: {
+            files: ['Gruntfile.js','src/**/*.js', 'dist/**/*.js', 'examples/**/*.js'],
+            options: {
+                globals: {
+                    jQuery: true
+                }
+            }
+        },
+        cssmin: {
+            options: {
+                banner:'<%= banner %>',
+                compatibility: 'ie9,-properties.zeroUnits',
+                sourceMap: true,
+                // sourceMapInlineSources: true,
+                advanced: false,
+                //ç¾åŒ–ä»£ç 
+                beautify: {
+                    ascii_only: true		//ä¸­æ–‡asciiåŒ–ï¼Œéå¸¸æœ‰ç”¨ï¼é˜²æ­¢ä¸­æ–‡ä¹±ç çš„ç¥é…ç½®
+                }
+            },
+            core: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/css',
+                    src: ['<%= pkg.name %>*.css'],
+                    dest: 'dist/css',
+                    ext: '.min.css'
+                }]
+            }
+        }
+    });
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('dist', ['clean','jshint','uglify:core','cssmin']);
 };
