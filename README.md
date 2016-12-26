@@ -18,8 +18,6 @@ $.iModal(options);
 ```
 
 ## 实现目标
-1.多层弹出
-
-2.实现alert,confirm,prompt功能
-
-3.实现多级Iframe中弹出
+- 多层弹出
+- 实现alert,confirm,prompt功能
+- 实现多级Iframe中弹出
