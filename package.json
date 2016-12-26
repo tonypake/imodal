@@ -1,14 +1,14 @@
 {
-  "name": "iModal",
+  "name": "imodal",
   "version": "1.0.0",
   "description": "支持iframe的弹出层，自定义样式",
-  "main": "src/css/iModal.css,src/js/iModal.js,src/js/iModal.jQuery.js",
+  "main": "src/css/imodal.css,src/js/imodal.js",
   "scripts": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cleverche/iModal.git"
+    "url": "https://github.com/cleverchen/imodal.git"
   },
   "keywords": [
     "css",
@@ -17,12 +17,12 @@
     "plugin",
     "web"
   ],
-  "author": "Lucky.Chen",
+  "author": "cleverchen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cleverche/iModal/issues"
+    "url": "https://github.com/cleverchen/imodal/issues"
   },
-  "homepage": "https://github.com/cleverche/iModal#readme",
+  "homepage": "https://github.com/cleverchen/imodal#readme",
   "devDependencies": {
     "bower": "^1.8.0",
     "grunt": "^1.0.1",
