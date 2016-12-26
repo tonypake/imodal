@@ -5,39 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap Dialog Template</title>
+    <title>Bootstrap Template</title>
 
     <!-- Bootstrap -->
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../src/css/dialog.css" rel="stylesheet">
+    <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+	  <link href="../node_modules/animate.css/animate.min.css" rel="stylesheet">
+      <link href="../node_modules/selectize/dist/css/selectize.css" rel="stylesheet">
+	  <link href="../src/css/iModal.css" rel="stylesheet">
 	<style>
-		.dialog{
-			position:fixed;
-			left:0;
-			top:0;
-			width:100%;
-			height:100%;
+		body,button {
+			font-family: 'Lato', Calibri, Microsoft Yahei, Arial, sans-serif;
+            background-color: #F4F4F4;
+		    /*'Lato', Calibri, Arial, sans-serif*/
+			/*Neue Haas Unica Web,BlinkMacSystemFont,-apple-system,Helvetica Neue,Helvetica,sans-serif*/
+		    /*"Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif*/
 		}
-		.dialog-bg{
-			position:absolute;
-			width:100%;
-			height:100%;
-			background:#000;
-			opacity:0.5;
-			filter:alpha(opacity=50);
+        button{
+            background-color: #fff;
+            box-shadow:0px 1px 5px #e5e5e5;
+			border: none;
+			padding: 0.6em 1.2em;
+			font-size: 1em;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			cursor: pointer;
+			display: inline-block;
+			margin: 3px 2px;
+			border-radius: 2px;
 		}
-		.dialog-content{
-			position:absolute;
-			left:50%;
-			top:50%;
-			width:500px;
-			height:300px;
-			margin-top:-150px;
-			margin-left:-250px;
-			background:#fff;
-		}
-		.dialog-header{
-			
+		.imodal-footer{
+			text-align: center;
 		}
 	</style>
 
@@ -46,33 +43,158 @@
     <!--[if lt IE 9]>
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+      <script src="//cdn.bootcss.com/es5-shim/2.0.8/es5-sham.js"></script>
     <![endif]-->
   </head>
   <body>
-	<div class="container" id="" style="height:1000px;">
-		<h1>Dialog Examples</h1>
-		<button class="btn btn-info">iframe btn test</button>
-		<div class="a" id="a1">1</div>
-		<div class="a" id="a2">2</div>
-		<div class="a" id="a3">3</div>
-		<div class="a" id="a4">4</div>
-	
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-		  Launch demo modal
-		</button>
-	</div>
+	<h2>iModals 例子(Examples)</h2>
+    <h4>基础(Basics)</h4>
+	<button class="btn btn-info" id="basics">Demo</button>
+    <h4>动画(Animate)</h4>
+    <select id="animateSel" style="width:200px;">
+        <optgroup label="Attention Seekers">
+            <option value="bounce">bounce</option>
+            <option value="flash">flash</option>
+            <option value="pulse">pulse</option>
+            <option value="rubberBand">rubberBand</option>
+            <option value="shake">shake</option>
+            <option value="swing">swing</option>
+            <option value="tada">tada</option>
+            <option value="wobble">wobble</option>
+            <option value="jello">jello</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Entrances">
+            <option value="bounceIn">bounceIn</option>
+            <option value="bounceInDown">bounceInDown</option>
+            <option value="bounceInLeft">bounceInLeft</option>
+            <option value="bounceInRight">bounceInRight</option>
+            <option value="bounceInUp">bounceInUp</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Exits">
+            <option value="bounceOut">bounceOut</option>
+            <option value="bounceOutDown">bounceOutDown</option>
+            <option value="bounceOutLeft">bounceOutLeft</option>
+            <option value="bounceOutRight">bounceOutRight</option>
+            <option value="bounceOutUp">bounceOutUp</option>
+        </optgroup>
+
+        <optgroup label="Fading Entrances">
+            <option value="fadeIn">fadeIn</option>
+            <option value="fadeInDown">fadeInDown</option>
+            <option value="fadeInDownBig">fadeInDownBig</option>
+            <option value="fadeInLeft">fadeInLeft</option>
+            <option value="fadeInLeftBig">fadeInLeftBig</option>
+            <option value="fadeInRight">fadeInRight</option>
+            <option value="fadeInRightBig">fadeInRightBig</option>
+            <option value="fadeInUp">fadeInUp</option>
+            <option value="fadeInUpBig">fadeInUpBig</option>
+        </optgroup>
+
+        <optgroup label="Fading Exits">
+            <option value="fadeOut">fadeOut</option>
+            <option value="fadeOutDown">fadeOutDown</option>
+            <option value="fadeOutDownBig">fadeOutDownBig</option>
+            <option value="fadeOutLeft">fadeOutLeft</option>
+            <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+            <option value="fadeOutRight">fadeOutRight</option>
+            <option value="fadeOutRightBig">fadeOutRightBig</option>
+            <option value="fadeOutUp">fadeOutUp</option>
+            <option value="fadeOutUpBig">fadeOutUpBig</option>
+        </optgroup>
+
+        <optgroup label="Flippers">
+            <option value="flip">flip</option>
+            <option value="flipInX">flipInX</option>
+            <option value="flipInY">flipInY</option>
+            <option value="flipOutX">flipOutX</option>
+            <option value="flipOutY">flipOutY</option>
+        </optgroup>
+
+        <optgroup label="Lightspeed">
+            <option value="lightSpeedIn">lightSpeedIn</option>
+            <option value="lightSpeedOut">lightSpeedOut</option>
+        </optgroup>
+
+        <optgroup label="Rotating Entrances">
+            <option value="rotateIn">rotateIn</option>
+            <option value="rotateInDownLeft">rotateInDownLeft</option>
+            <option value="rotateInDownRight">rotateInDownRight</option>
+            <option value="rotateInUpLeft">rotateInUpLeft</option>
+            <option value="rotateInUpRight">rotateInUpRight</option>
+        </optgroup>
+
+        <optgroup label="Rotating Exits">
+            <option value="rotateOut">rotateOut</option>
+            <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+            <option value="rotateOutDownRight">rotateOutDownRight</option>
+            <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+            <option value="rotateOutUpRight">rotateOutUpRight</option>
+        </optgroup>
+
+        <optgroup label="Sliding Entrances">
+            <option value="slideInUp">slideInUp</option>
+            <option value="slideInDown">slideInDown</option>
+            <option value="slideInLeft">slideInLeft</option>
+            <option value="slideInRight">slideInRight</option>
+
+        </optgroup>
+        <optgroup label="Sliding Exits">
+            <option value="slideOutUp">slideOutUp</option>
+            <option value="slideOutDown">slideOutDown</option>
+            <option value="slideOutLeft">slideOutLeft</option>
+            <option value="slideOutRight">slideOutRight</option>
+
+        </optgroup>
+
+        <optgroup label="Zoom Entrances">
+            <option value="zoomIn">zoomIn</option>
+            <option value="zoomInDown">zoomInDown</option>
+            <option value="zoomInLeft">zoomInLeft</option>
+            <option value="zoomInRight">zoomInRight</option>
+            <option value="zoomInUp">zoomInUp</option>
+        </optgroup>
+
+        <optgroup label="Zoom Exits">
+            <option value="zoomOut">zoomOut</option>
+            <option value="zoomOutDown">zoomOutDown</option>
+            <option value="zoomOutLeft">zoomOutLeft</option>
+            <option value="zoomOutRight">zoomOutRight</option>
+            <option value="zoomOutUp">zoomOutUp</option>
+        </optgroup>
+
+        <optgroup label="Specials">
+            <option value="hinge">hinge</option>
+            <option value="rollIn">rollIn</option>
+            <option value="rollOut">rollOut</option>
+        </optgroup>
+    </select>
+    <button class="btn btn-info" id="animate">Demo</button>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../node_modules/jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="../src/js/dialog.jquery.js"></script>
+    <script src="../node_modules/selectize/dist/js/standalone/selectize.min.js"></script>
+    <!--<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="../src/js/iModal.jQuery.js"></script>
 	<!-- 这里是插件源代码 <script src="src/bootstrap.dropdown.js"></script> -->
 	<script>
 	$(document).ready(function(){
-		$(".a").dialog();
-		$.dialog();
-	});
+        $("#animateSel").selectize();
+        $("#basics").on("click",function () {
+            $.iModal({
+                clsName:"abs"
+            });
+        })
+
+        $("#animate").on("click",function () {
+            var animateCls= $("#animateSel").val();
+            $.iModal({
+                animateCls:animateCls
+            });
+        })
+    });
 	</script>
   </body>
 </html>
