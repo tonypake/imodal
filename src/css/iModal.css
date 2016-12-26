@@ -1,28 +1,88 @@
-.dialog{
-	position:fixed;
-	left:0;
-	top:0;
-	width:100%;
-	height:100%;
+::-webkit-scrollbar{ width: 8px;height: 8px; }
+::-webkit-scrollbar-track-piece{ background-color: #CCCCCC;-webkit-border-radius: 8px; }
+::-webkit-scrollbar-thumb:vertical{ height: 7px;background-color: #999999;-webkit-border-radius: 8px; }
+::-webkit-scrollbar-thumb:horizontal{ width: 7px;background-color: #CCCCCC;-webkit-border-radius: 8px; }
+.imodal-close {
+	float: right;
+	font-size: 28px;
+	font-weight: 700;
+	line-height: 1;
+	margin:8px 2px;
+	color: #000;
+	text-shadow: 0 1px 0 #fff;
+	filter: alpha(opacity=20);
+	opacity: .2
 }
-.dialog-bg{
-	position:absolute;
-	width:100%;
-	height:100%;
-	background:#000;
-	opacity:0.5;
+
+.imodal-close:hover,.imodal-close:focus {
+	color: #000;
+	outline:none;
+	text-decoration: none;
+	cursor: pointer;
+	filter: alpha(opacity=50);
+	opacity: .5
+}
+
+.imodal-close {
+	-webkit-appearance: none;
+	padding: 0;
+	cursor: pointer;
+	background: 0 0;
+	border: 0
+}
+.imodal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #000;
+	opacity:.5;
 	filter:alpha(opacity=50);
+	z-index: 998;
 }
-.dialog-content{
-	position:absolute;
-	left:50%;
-	top:50%;
-	width:500px;
-	height:300px;
-	margin-top:-150px;
-	margin-left:-250px;
+.imodal-dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 630px;
+	height: 360px;
+	margin-top:-180px;
+	margin-left:-315px;
+	z-index: 999;
+	visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+.imodal-content{
 	background:#fff;
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+	height:100%;
 }
-.dialog-header{
-	
+.imodal-header{
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	font-size: 36px;
+	font-weight: 300;
+	opacity: 0.9;
+	border-radius: 3px 3px 0 0;
+	border-bottom:1px solid #e5e5e5;
+	/*box-shadow:0px 1px 5px #e5e5e5;*/
+}
+.imodal-body{
+	padding: 0.90em;
+	overflow:auto;
+	height:186px;
+	/*box-shadow:0px 0px 5px #aaa inset;*/
+}
+.imodal-footer{
+	padding: 0.90em;
+	border-top:1px solid #e5e5e5;
+}
+.imodal-show {
+	visibility: visible;
 }
