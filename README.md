@@ -12,9 +12,7 @@ $.iModal(options);
 ```
 #### IE8浏览器支持
 ```html
-<!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/es5-shim/2.0.8/es5-sham.js"></script><![endif]
--->
+<!--[if lt IE 9]><script src="//cdn.bootcss.com/es5-shim/2.0.8/es5-sham.js"></script><![endif]-->
 ```
 
 ## 实现目标
