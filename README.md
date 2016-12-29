@@ -1,4 +1,4 @@
-# [iModal](https://github.com/cleverchens/imodal)
+# :sparkles:[iModal](https://github.com/cleverchens/imodal):sparkles:
 支持iframe的弹出层，自定义样式
 
 ## 包依赖
