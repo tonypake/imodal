@@ -15,6 +15,7 @@
 ## 包依赖 ##
 - [animate.css](https://github.com/daneden/animate.css)(实现动画效果)
 - [jquery](https://github.com/jquery/jquery) (1.9.1 and greater)
+
 ## 开发包依赖 ##
 - [selectize](https://github.com/selectize/selectize.js) (dist/js/standalone)
 
