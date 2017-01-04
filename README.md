@@ -41,8 +41,8 @@ $.iModal(options);
     </tr>
 	<tr>
 		<th width="8%" align="center">属性</th>
-		<th width="90%" align="left">描述</th>
-		<th width="12%" align="center">默认值</th>
+		<th width="88%" align="left">描述</th>
+		<th align="center">默认值</th>
 	</tr>
 </table>
 
