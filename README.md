@@ -44,7 +44,7 @@ $.iModal(options);
 	<tr>
 		<th width="8%" align="center">属性</th>
 		<th width="82%" align="left">描述</th>
-		<th align="center">默认值</th>
+		<th width="10%" align="center">默认值</th>
 	</tr>
 </table>
 
@@ -60,9 +60,3 @@ $.iModal(options);
 		<th width="12%" align="center">参数</th>
 	</tr>
 </table>
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
