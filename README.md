@@ -33,6 +33,8 @@ $.iModal(options);
     <script src="//cdn.bootcss.com/es5-shim/2.0.8/es5-sham.js"></script><![endif]
 -->
 ```
+
+
 <table width="100%">
     <tr>
         <th colspan="3" align="left" width="100%">
@@ -41,7 +43,7 @@ $.iModal(options);
     </tr>
 	<tr>
 		<th width="8%" align="center">属性</th>
-		<th width="88%" align="left">描述</th>
+		<th width="86%" align="left">描述</th>
 		<th align="center">默认值</th>
 	</tr>
 </table>
