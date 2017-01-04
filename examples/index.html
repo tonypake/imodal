@@ -11,7 +11,7 @@
     <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
 	  <link href="../node_modules/animate.css/animate.min.css" rel="stylesheet">
       <link href="../node_modules/selectize/dist/css/selectize.css" rel="stylesheet">
-	  <link href="../src/css/iModal.css" rel="stylesheet">
+	  <link href="../src/css/imodal.css" rel="stylesheet">
 	<style>
 		body,button {
 			font-family: 'Lato', Calibri, Microsoft Yahei, Arial, sans-serif;
@@ -32,17 +32,21 @@
 			display: inline-block;
 			margin: 3px 2px;
 			border-radius: 2px;
+            border:1px solid #d0d0d0;
 		}
 		.imodal-footer{
 			text-align: center;
 		}
+
 	</style>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    -->
     <!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
       <script src="//cdn.bootcss.com/es5-shim/2.0.8/es5-sham.js"></script>
     <![endif]-->
   </head>
@@ -145,7 +149,6 @@
             <option value="slideOutDown">slideOutDown</option>
             <option value="slideOutLeft">slideOutLeft</option>
             <option value="slideOutRight">slideOutRight</option>
-
         </optgroup>
 
         <optgroup label="Zoom Entrances">
@@ -177,7 +180,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../node_modules/selectize/dist/js/standalone/selectize.min.js"></script>
     <!--<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
-    <script src="../src/js/iModal.jQuery.js"></script>
+    <script src="../src/js/imodal.js"></script>
 	<!-- 这里是插件源代码 <script src="src/bootstrap.dropdown.js"></script> -->
 	<script>
 	$(document).ready(function(){
