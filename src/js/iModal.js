@@ -73,13 +73,15 @@ if (typeof jQuery === 'undefined') {
             '</div>');
 
 			this.parentDom.append(this.dom);
-            this.modal  = $(".imodal",this.parentDom);
+            this.modal = $(".imodal",this.parentDom);
             this.back  = $(".imodal-backdrop",this.parentDom);
 
+            //判断是否支持点击遮罩层关闭弹出层
             var closeSelector = ".imodal-close";
             if(arg.backdrop){
                 closeSelector += ",.imodal-backdrop";
 			}
+            //关闭弹出层
             $(closeSelector,this.modal).on("click",function(){
                 $this.modal.hide();
 			});
