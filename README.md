@@ -40,9 +40,9 @@ $.iModal(options);
         </th>
     </tr>
 	<tr>
-		<th valign="top" width="10%" align="left">属性</th>
+		<th valign="top" width="8%" align="left">属性</th>
 		<th valign="top" width="90%" align="left">描述</th>
-		<th valign="top" width="10%" align="left">默认值</th>
+		<th valign="top" width="12%" align="left">默认值</th>
 	</tr>
 </table>
 
@@ -53,9 +53,9 @@ $.iModal(options);
         </th>
     </tr>
 	<tr>
-		<th valign="top" width="10%" align="left">名称</th>
-		<th valign="top" width="80%" align="left">描述</th>
-		<th valign="top" width="10%" align="left">参数</th>
+		<th valign="top" width="8%" align="left">名称</th>
+		<th valign="top" width="90%" align="left">描述</th>
+		<th valign="top" width="12%" align="left">参数</th>
 	</tr>
 </table>
 
