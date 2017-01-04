@@ -41,8 +41,21 @@ $.iModal(options);
     </tr>
 	<tr>
 		<th valign="top" width="10%" align="left">属性</th>
-		<th valign="top" width="80%" align="left">描述</th>
+		<th valign="top" width="90%" align="left">描述</th>
 		<th valign="top" width="10%" align="left">默认值</th>
+	</tr>
+</table>
+
+<table width="100%">
+    <tr>
+        <th valign="top" colspan="3" align="left" width="100%">
+            <a href="#meths" name="meths">方法</a>
+        </th>
+    </tr>
+	<tr>
+		<th valign="top" width="10%" align="left">名称</th>
+		<th valign="top" width="80%" align="left">描述</th>
+		<th valign="top" width="10%" align="left">参数</th>
 	</tr>
 </table>
 
