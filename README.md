@@ -38,9 +38,9 @@ $.iModal(options);
         <th valign="top" colspan="3" align="left"><a href="#props" name="props">属性</a></th>
     </tr>
 	<tr>
-		<th valign="top" width="120px" align="left">属性</th>
-		<th valign="top" align="left">描述</th>
-		<th valign="top" width="60px" align="left">默认值</th>
+		<th valign="top" width="10%" align="left">属性</th>
+		<th valign="top" width="80%" align="left">描述</th>
+		<th valign="top" width="10%" align="left">默认值</th>
 	</tr>
 </table>
 
