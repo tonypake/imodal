@@ -13,10 +13,11 @@ if (typeof jQuery === 'undefined') {
 		id : null,
 		width : 500,									//弹出层的宽
 		height : 300,									//弹出层的高
-		clsName:'',										//弹出层最外层的样式，可以选择覆盖，也可以追加新样式
+        clsName:'',										//弹出层最外层的样式，可以选择覆盖，也可以追加新样式
         animateCls:'',									//弹出层弹出时的动画样式
+        backdrop: true,									//点击遮罩层关闭
 		url : null,
-		onLoad : null,
+        onLoad : null,
 		innerHtml : "",
 		invokeElementId : "",
 		top : "50%",
@@ -75,7 +76,11 @@ if (typeof jQuery === 'undefined') {
             this.modal  = $(".imodal",this.parentDom);
             this.back  = $(".imodal-backdrop",this.parentDom);
 
-            $(".imodal-close",this.modal).on("click",function(){
+            var closeSelector = ".imodal-close";
+            if(arg.backdrop){
+                closeSelector += ",.imodal-backdrop";
+			}
+            $(closeSelector,this.modal).on("click",function(){
                 $this.modal.hide();
 			});
 		}
