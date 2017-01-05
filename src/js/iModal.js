@@ -8,21 +8,23 @@ if (typeof jQuery === 'undefined') {
 	if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {
 		throw new Error('Dialog\'s JavaScript requires jQuery version 1.9.1 or higher');
 	}
+	var cssPrefix = "imodal";
 	var iModalOptions = {
 		/****以下属性以驼峰是写法，可以在调用show()方法前设置值****/
 		id : null,
+        title : "",										//弹出层的标题，如果为空，则没有弹出层的标题
 		width : 500,									//弹出层的宽
 		height : 300,									//弹出层的高
         clsName:'',										//弹出层最外层的样式，可以选择覆盖，也可以追加新样式
         animateCls:'',									//弹出层弹出时的动画样式
         backdrop: true,									//点击遮罩层关闭
-		url : null,
+        zIndex : 900,									//弹出层的平面位置
+		url : null,										//弹出层的内容可以是某个url路径，优先级最高
+        innerHtml : "",									//弹出层的内容可以是某个html内容，优先级其次
+        invokeElementId : "",							//弹出层的内容可以是页面某ID元素，优先级最低
         onLoad : null,
-		innerHtml : "",
-		invokeElementId : "",
 		top : "50%",
 		left : "50%",
-		title : "",
 		okEvent : null, //点击确定后调用的方法
 		cancelEvent : null, //点击取消及关闭后调用的方法
 		showButtonRow : false,
@@ -30,16 +32,15 @@ if (typeof jQuery === 'undefined') {
 		messageTitle : "",
 		message : "",
 		showMessageRow : false,
-		modal : true,
 		drag : true,
 		autoClose : null,
 		showCloseButton : true,
-		animator : true,
-		zIndex : 900,
+
 		/****以下属性不要自行改变****/
         modal : null,
         back : null,
         parentDom : null,
+        modalTitle : null,
 		InnerFrame : null,
 		InnerWin : null,
 		InnerDoc : null,
@@ -49,42 +50,80 @@ if (typeof jQuery === 'undefined') {
 	var iModalMethods = {
 		init : function(arg){
 			var $this = this;
+			this.options = arg;
 			this.parentDom = $(this);
-			this.dom = $('<div id="myModal" class="imodal">'+
-				'<div class="imodal-backdrop"></div>'+
-				'<div class="imodal-dialog imodal-show '+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'">'+
-					'<div class="imodal-content">'+
-						'<div class="imodal-header">'+
-						'	<button type="button" class="imodal-close" data-dismiss="modal"><span aria-hidden="true">×</span></button>'+
-						'   <div class="imodal-title" id="myModalLabel">iModal Title</div>'+
+			this.modal = $('<div id="imodal'+arg.id+'" class="'+cssPrefix+'-container" style="">'+
+				'<div class="'+cssPrefix+'-backdrop" style="'+(arg.zIndex ? 'z-index:'+arg.zIndex : "")+'"></div>'+
+				'<div class="'+cssPrefix+'-popup '+cssPrefix+'-show '+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'" style="'+(arg.zIndex ? 'z-index:'+arg.zIndex : "")+'">'+
+					'<div class="'+cssPrefix+'-content">'+
+						'<div class="'+cssPrefix+'-header">'+
+						'	<button type="button" class="'+cssPrefix+'-close" data-dismiss="modal"><span aria-hidden="true">×</span></button>'+
+						'   <div class="'+cssPrefix+'-title" id="">'+ (arg.title ? arg.title : "")+'</div>'+
 						'</div>'+
-						'<div class="imodal-body">'+
-						'	<h4>Overflowing text to show scroll behavior</h4>'+
-							'<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>'+
-							'<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>'+
-							'<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>'+
-						'</div>'+
-						'<div class="imodal-footer">'+
-						'	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>'+
-						'	<button type="button" class="btn btn-primary">Save</button>'+
+						'<div class="'+cssPrefix+'-body"></div>'+
+						'<div class="'+cssPrefix+'-footer">'+
+                		'	<button type="button" class="'+cssPrefix+'-btn">确&nbsp;&nbsp;认</button>'+
+						'	<button type="button" class="'+cssPrefix+'-btn" data-dismiss="modal">取&nbsp;&nbsp;消</button>'+
 						'</div>'+
 					'</div>'+
 				'</div>'+
             '</div>');
 
-			this.parentDom.append(this.dom);
-            this.modal = $(".imodal",this.parentDom);
-            this.back  = $(".imodal-backdrop",this.parentDom);
+			this.parentDom.append(this.modal);
+            this.back  = $("."+cssPrefix+"-backdrop",this.modal);
+            this.header= $("."+cssPrefix+"-header",this.modal);
+            this.footer= $("."+cssPrefix+"-footer",this.modal);
+            this.bodyer= $("."+cssPrefix+"-body",this.modal);
+            //设置弹出层的内容
+            if(arg.url){
+                this.bodyer.append('<iframe width="100%" height="100%" frameborder="0" style="border:none 0;" allowtransparency="true" id="iModalFrame" src="' + arg.url + '"></iframe>');
+			}else{
+                if(arg.innerHtml){
+                    this.bodyer.append(arg.innerHtml);
+                }else{
+                    if(arg.invokeElementId){
+                        this.bodyer.append($("#"+arg.invokeElementId).clone().show().prop("outerHTML"));
+                    }
+				}
+			}
+            this.popup= $("."+cssPrefix+"-popup",this.modal);
+            this.modalTitle = $("."+cssPrefix+"-title",this.modal);
+
+            //设置弹出层的标题
+            if(!arg.title){
+                this.modalTitle.hide();
+			}
 
             //判断是否支持点击遮罩层关闭弹出层
-            var closeSelector = ".imodal-close";
+            var closeSelector = "."+cssPrefix+"-close";
             if(arg.backdrop){
-                closeSelector += ",.imodal-backdrop";
+                closeSelector += ",."+cssPrefix+"-backdrop";
 			}
             //关闭弹出层
             $(closeSelector,this.modal).on("click",function(){
                 $this.modal.hide();
 			});
+
+            //设置弹出层的宽高
+            iModalMethods.setSize.call(this,arg.width,arg.height);
+		},
+		setSize : function(width,height){
+			if(width){
+                if(width < 300){
+                    width = 300;
+                }
+                this.popup.width(width).css("marginLeft",("-"+width/2+"px"));
+			}
+            if(height){
+                if(height < 300){
+                	height = 300;
+                }
+                this.popup.height(height).css("marginTop","-"+height/2+"px");
+                var hh = this.header.outerHeight(true),fh = this.footer.outerHeight(true);
+                if((height - hh - fh) > 0){
+                    this.bodyer.height(height - hh - fh);
+                }
+            }
 		}
 	};
 	var iModal = $.fn.iModal = function(){
