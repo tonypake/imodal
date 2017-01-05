@@ -1,3 +1,5 @@
+<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>
+
 # :sparkles:[iModal](https://github.com/cleverchens/imodal):sparkles: ##
 ## 哪些功能 ##
   - [x] 自定义弹出层的样式
@@ -27,6 +29,7 @@
 ```javascript
 $.iModal(options);
 ```
+
 #### IE8浏览器支持 ##
 ```html 
 <!--[if lt IE 9]>
