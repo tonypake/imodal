@@ -13,13 +13,9 @@
     - 页面内隐藏的元素中的html内容 
     - 直接输出一段html内容
 
-
 ## 包依赖 ##
-- [animate.css](https://github.com/daneden/animate.css)(实现动画效果)
-- [jquery](https://github.com/jquery/jquery) (1.9.1 and greater)
-
-## 开发包依赖 ##
-- [selectize](https://github.com/selectize/selectize.js) (dist/js/standalone)
+- [animate.css](https://github.com/daneden/animate.css)(实现动画效果,可选)
+- [jquery](https://github.com/jquery/jquery) (1.9.1 and greater,必须)
 
 ## 使用方法 ##
 ```html 
@@ -27,7 +23,7 @@
 <link href="./src/css/imodal.css" rel="stylesheet">
 ```
 ```javascript
-$.iModal(options);
+$.iModal(属性或方法);
 ```
 
 #### IE8浏览器支持 ##
