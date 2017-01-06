@@ -33,7 +33,6 @@ $.iModal(属性或方法);
 -->
 ```
 
-
 <table width="100%">
     <tr>
         <th colspan="3" align="left" width="100%">
@@ -55,7 +54,7 @@ $.iModal(属性或方法);
     </tr>
 	<tr>
 		<th width="8%" align="center">名称</th>
-		<th width="90%" align="left">描述</th>
-		<th width="12%" align="center">参数</th>
+		<th width="82%" align="left">描述</th>
+		<th width="10%" align="center">参数</th>
 	</tr>
 </table>
