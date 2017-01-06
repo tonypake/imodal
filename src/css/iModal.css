@@ -28,11 +28,17 @@
 	opacity: .5
 }
 .imodal-container{
-
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	outline: 0
 }
 .imodal-backdrop {
-	position: fixed;
-	z-index:900;
+	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -42,8 +48,7 @@
 	filter:alpha(opacity=40);
 }
 .imodal-popup {
-	position: fixed;
-	z-index:900;
+	position: absolute;
 	top: 50%;
 	left: 50%;
 	width: 630px;
@@ -81,7 +86,8 @@
 }
 .imodal-footer{
 	padding: 8px;
-	border-top:1px solid #e5e5e5;
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
 }
 .imodal-show {
 	visibility: visible;
