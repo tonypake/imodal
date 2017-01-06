@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap Template</title>
+    <title>iModal-SmaChen</title>
     <meta name="Copyright" content="Smachen" />
     <!-- Bootstrap -->
     <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
@@ -14,15 +14,15 @@
 	<link href="../src/css/imodal.css" rel="stylesheet">
     <style>
       body,button {
-        font-family: 'Lato', Calibri, Microsoft Yahei, Arial, sans-serif;
-        background-color: #F4F4F4;
-        /*'Lato', Calibri, Arial, sans-serif*/
-        /*Neue Haas Unica Web,BlinkMacSystemFont,-apple-system,Helvetica Neue,Helvetica,sans-serif*/
-        /*"Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif*/
+          background-color: #F4F4F4;
+          color: #444;
+          font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+          /*Neue Haas Unica Web,BlinkMacSystemFont,-apple-system,Helvetica Neue,Helvetica,sans-serif*/
+          /*'Lato', Calibri, Microsoft Yahei, Arial, sans-serif*/
+          /*"Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif*/
       }
-      .imodal-footer{
-        text-align: center;
-      }
+      .container{ width:980px;margin:0 auto; }
+      .selectize-control{ float:left; }
       </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -35,90 +35,92 @@
       <![endif]-->
   </head>
   <body>
-	<h2>iModals 例子(Examples)</h2>
-    <h4>基础(Basics)</h4>
-	<button class="imodal-btn">普通弹出</button>
-    <button class="imodal-btn" data-width="600" data-height="500">600*500弹出</button>
-    <h4>动画(Animate)</h4>
-    <select id="animateSel" style="width:200px;">
-        <optgroup label="Attention Seekers">
-            <option value="bounce">bounce</option>
-            <option value="flash">flash</option>
-            <option value="pulse">pulse</option>
-            <option value="rubberBand">rubberBand</option>
-            <option value="shake">shake</option>
-            <option value="swing">swing</option>
-            <option value="tada">tada</option>
-            <option value="wobble">wobble</option>
-            <option value="jello">jello</option>
-        </optgroup>
-        <optgroup label="Bouncing Entrances">
-            <option value="bounceIn">bounceIn</option>
-            <option value="bounceInDown">bounceInDown</option>
-            <option value="bounceInLeft">bounceInLeft</option>
-            <option value="bounceInRight">bounceInRight</option>
-            <option value="bounceInUp">bounceInUp</option>
-        </optgroup>
-        <optgroup label="Fading Entrances">
-            <option value="fadeIn">fadeIn</option>
-            <option value="fadeInDown">fadeInDown</option>
-            <option value="fadeInDownBig">fadeInDownBig</option>
-            <option value="fadeInLeft">fadeInLeft</option>
-            <option value="fadeInLeftBig">fadeInLeftBig</option>
-            <option value="fadeInRight">fadeInRight</option>
-            <option value="fadeInRightBig">fadeInRightBig</option>
-            <option value="fadeInUp">fadeInUp</option>
-            <option value="fadeInUpBig">fadeInUpBig</option>
-        </optgroup>
-        <optgroup label="Flippers">
-            <option value="flip">flip</option>
-            <option value="flipInX">flipInX</option>
-            <option value="flipInY">flipInY</option>
-            <option value="flipOutX">flipOutX</option>
-            <option value="flipOutY">flipOutY</option>
-        </optgroup>
-        <optgroup label="Lightspeed">
-            <option value="lightSpeedIn">lightSpeedIn</option>
-            <option value="lightSpeedOut">lightSpeedOut</option>
-        </optgroup>
-        <optgroup label="Rotating Entrances">
-            <option value="rotateIn">rotateIn</option>
-            <option value="rotateInDownLeft">rotateInDownLeft</option>
-            <option value="rotateInDownRight">rotateInDownRight</option>
-            <option value="rotateInUpLeft">rotateInUpLeft</option>
-            <option value="rotateInUpRight">rotateInUpRight</option>
-        </optgroup>
-        <optgroup label="Sliding Entrances">
-            <option value="slideInUp">slideInUp</option>
-            <option value="slideInDown">slideInDown</option>
-            <option value="slideInLeft">slideInLeft</option>
-            <option value="slideInRight">slideInRight</option>
-        </optgroup>
-        <optgroup label="Zoom Entrances">
-            <option value="zoomIn">zoomIn</option>
-            <option value="zoomInDown">zoomInDown</option>
-            <option value="zoomInLeft">zoomInLeft</option>
-            <option value="zoomInRight">zoomInRight</option>
-            <option value="zoomInUp">zoomInUp</option>
-        </optgroup>
-        <optgroup label="Specials">
-            <option value="hinge">hinge</option>
-            <option value="rollIn">rollIn</option>
-            <option value="rollOut">rollOut</option>
-        </optgroup>
-    </select>
-    <button class="imodal-btn" data-animate ="true">测试</button>
+    <div class="container">
+        <h3>iModals V1.0</h3>
+        <h4>基础</h4>
+        <button class="imodal-btn">普通弹出</button>
+        <button class="imodal-btn" data-width="600" data-height="500">600*500弹出</button>
+        <h4>动画</h4>
+        <select id="animateSel" style="width:200px;">
+            <optgroup label="Attention Seekers">
+                <option value="bounce">bounce</option>
+                <option value="flash">flash</option>
+                <option value="pulse">pulse</option>
+                <option value="rubberBand">rubberBand</option>
+                <option value="shake">shake</option>
+                <option value="swing">swing</option>
+                <option value="tada">tada</option>
+                <option value="wobble">wobble</option>
+                <option value="jello">jello</option>
+            </optgroup>
+            <optgroup label="Bouncing Entrances">
+                <option value="bounceIn">bounceIn</option>
+                <option value="bounceInDown">bounceInDown</option>
+                <option value="bounceInLeft">bounceInLeft</option>
+                <option value="bounceInRight">bounceInRight</option>
+                <option value="bounceInUp">bounceInUp</option>
+            </optgroup>
+            <optgroup label="Fading Entrances">
+                <option value="fadeIn">fadeIn</option>
+                <option value="fadeInDown">fadeInDown</option>
+                <option value="fadeInDownBig">fadeInDownBig</option>
+                <option value="fadeInLeft">fadeInLeft</option>
+                <option value="fadeInLeftBig">fadeInLeftBig</option>
+                <option value="fadeInRight">fadeInRight</option>
+                <option value="fadeInRightBig">fadeInRightBig</option>
+                <option value="fadeInUp">fadeInUp</option>
+                <option value="fadeInUpBig">fadeInUpBig</option>
+            </optgroup>
+            <optgroup label="Flippers">
+                <option value="flip">flip</option>
+                <option value="flipInX">flipInX</option>
+                <option value="flipInY">flipInY</option>
+                <option value="flipOutX">flipOutX</option>
+                <option value="flipOutY">flipOutY</option>
+            </optgroup>
+            <optgroup label="Lightspeed">
+                <option value="lightSpeedIn">lightSpeedIn</option>
+                <option value="lightSpeedOut">lightSpeedOut</option>
+            </optgroup>
+            <optgroup label="Rotating Entrances">
+                <option value="rotateIn">rotateIn</option>
+                <option value="rotateInDownLeft">rotateInDownLeft</option>
+                <option value="rotateInDownRight">rotateInDownRight</option>
+                <option value="rotateInUpLeft">rotateInUpLeft</option>
+                <option value="rotateInUpRight">rotateInUpRight</option>
+            </optgroup>
+            <optgroup label="Sliding Entrances">
+                <option value="slideInUp">slideInUp</option>
+                <option value="slideInDown">slideInDown</option>
+                <option value="slideInLeft">slideInLeft</option>
+                <option value="slideInRight">slideInRight</option>
+            </optgroup>
+            <optgroup label="Zoom Entrances">
+                <option value="zoomIn">zoomIn</option>
+                <option value="zoomInDown">zoomInDown</option>
+                <option value="zoomInLeft">zoomInLeft</option>
+                <option value="zoomInRight">zoomInRight</option>
+                <option value="zoomInUp">zoomInUp</option>
+            </optgroup>
+            <optgroup label="Specials">
+                <option value="hinge">hinge</option>
+                <option value="rollIn">rollIn</option>
+                <option value="rollOut">rollOut</option>
+            </optgroup>
+        </select>
+        <button class="imodal-btn" data-animate ="true" style="float:left;margin-left:5px;">测试</button>
 
-    <div id="imodalID" style="padding:0.9em;display:none;">
-        <h4>Overflowing text to show scroll behavior</h4>
-        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p></div>
-    </div>
+        <div id="imodalID" style="padding:0.9em;display:none;">
+            <h4>Overflowing text to show scroll behavior</h4>
+            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p></div>
+        </div>
+      </div>
 
-    <div style="position: fixed;bottom:100px;background:#fff;z-index:901;padding:10px;">
-        当前zIndex ：901<br>
-        默认弹出层的额zIndex:900
+    <div style="position: fixed;bottom:10px;background:#fff;z-index:901;padding:10px;">
+        当前层的zIndex ：901<br>
+        默认弹出层的zIndex ：900
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -133,7 +135,7 @@
         $("#animateSel").selectize();
         $(".imodal-btn").on("click",function () {
             var defaultOpton = {
-                title: 'iModal弹出层',
+                title: $(this).html() || 'iModal弹出层',
                 url : "test.html"
             };
             defaultOpton = $.extend(defaultOpton,$(this).data());
@@ -141,7 +143,7 @@
                 defaultOpton.animateCls = $("#animateSel").val();
                 delete defaultOpton.animate;
             }
-            $.iModal(defaultOpton);
+            var im = $.iModal(defaultOpton);
         })
     });
 	</script>
