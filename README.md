@@ -1,10 +1,14 @@
-<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>
-
-# :sparkles:[iModal](https://github.com/cleverchens/imodal):sparkles: ##
+# :sparkles:[iModal](https://github.com/imodal/imodal.git):sparkles: [https://imodal.github.io/imodal](https://imodal.github.io/imodal)##
 ## 哪些功能 ##
-  - [x] 自定义弹出层的样式
+  - [x] 自定义弹出层的配置
+    - 自定义标题
+    - 遮罩层大小修改
+    - 支持无遮罩
+    - 点击遮罩关闭
+    - 自定义弹出样式
+    - 弹出层的平面位置
   - [x] 支持使用animate.css的css3动画样式,实现弹出层展示
-  - [ ] 键盘上的 esc 键被按下时关闭模态框或点击遮罩层可关闭弹出框
+  - [x] 键盘上的 esc 键被按下时关闭模态框或点击遮罩层可关闭弹出框
   - [ ] 代替window open,alert,confirm提供良好的用户体验
   - [ ] 兼容ie6/7/8、firefox2/3、Opera 弹出框在ie6下不会被select控件穿透
   - [ ] 对iframe下的应用作了充分考虑，适合复杂的系统应用
@@ -14,8 +18,8 @@
     - 直接输出一段html内容
 
 ## 包依赖 ##
-- [animate.css](https://github.com/daneden/animate.css)(实现动画效果,可选)
 - [jquery](https://github.com/jquery/jquery) (1.9.1 and greater,必须)
+- [animate.css](https://github.com/daneden/animate.css)(实现动画效果,可选)
 
 ## 使用方法 ##
 ```html 
