@@ -1,5 +1,5 @@
 # :sparkles:[iModal](https://github.com/imodal/imodal.git):sparkles: ##
-### [imodal.github.io](https://imodal.github.io/imodal) ###
+### 演示地址： [imodal.github.io](https://imodal.github.io/imodal) ###
 
 ## 哪些功能 ##
   - [x] 自定义弹出层的配置
@@ -20,8 +20,9 @@
     - 直接输出一段html内容
 
 ## 包依赖 ##
-- [jquery](https://github.com/jquery/jquery) (1.9.1 and greater,必须)
-- [animate.css](https://github.com/daneden/animate.css)(实现动画效果,可选)
+- [normalize](https://github.com/necolas/normalize.css) (样式重置库)
+- [animate.css](https://github.com/daneden/animate.css)(CSS3动画效果,可选)
+- [jquery](https://github.com/jquery/jquery) (1.9.1以上,必须)
 
 ## 使用方法 ##
 ```html 
