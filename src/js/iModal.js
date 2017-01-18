@@ -17,7 +17,8 @@ if (typeof jQuery === 'undefined') {
 		height : 300,									//弹出层的高
         clsName:'',										//弹出层最外层的样式，可以选择覆盖，也可以追加新样式
         animateCls:'',									//弹出层弹出时的动画样式
-        backdrop: false,									//点击遮罩层关闭
+        modal : true,									//是否有遮罩层
+        backdrop: true,								//点击遮罩层关闭
         zIndex : 900,									//弹出层的平面位置
 		url : null,										//弹出层的内容可以是某个url路径，优先级最高
         innerHtml : "",									//弹出层的内容可以是某个html内容，优先级其次
@@ -52,9 +53,10 @@ if (typeof jQuery === 'undefined') {
 		init : function(arg){
 			var $this = this;
 			this.options = arg;
-			this.$modal = $('<div id="imodal'+(arg.id ? arg.id : "" )+'" tabindex="1" class="'+cssPrefix+'-container" style="'+(arg.zIndex ? 'z-index:'+arg.zIndex : "")+'">'+
-				'<div class="'+cssPrefix+'-backdrop" style=""></div>'+
-				'<div class="'+cssPrefix+'-popup '+cssPrefix+'-show '+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'" style="">'+
+			//this.$modal = $('<div id="imodal'+(arg.id ? arg.id : "" )+'" tabindex="1" class="'+cssPrefix+'-container" style="'+(arg.zIndex ? 'z-index:'+arg.zIndex : "")+'">'+
+            //'<div class="'+cssPrefix+'-popup '+cssPrefix+'-show '+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'" style="">'+
+            this.$modal = $('<div id="imodal'+(arg.id ? arg.id : "" )+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'" tabindex="1" class="'+cssPrefix+'-container" style="'+(arg.zIndex ? 'z-index:'+arg.zIndex : "")+'">'+
+				//'<div class="'+cssPrefix+'-popup '+cssPrefix+'-show '+ arg.clsName + (arg.animateCls ? 'animated '+arg.animateCls : '') +'" style="">'+
 					'<div class="'+cssPrefix+'-content">'+
 						'<div class="'+cssPrefix+'-header">'+
 						'	<button type="button" class="'+cssPrefix+'-close" data-dismiss="modal"><span aria-hidden="true">×</span></button>'+
@@ -65,20 +67,28 @@ if (typeof jQuery === 'undefined') {
                 		'	<button type="button" class="'+cssPrefix+'-btn">确&nbsp;&nbsp;认</button>'+
 						'	<button type="button" class="'+cssPrefix+'-btn" data-dismiss="modal">取&nbsp;&nbsp;消</button>'+
 						'</div>'+
-					'</div>'+
-				'</div>'+
-            '</div>');
+					'</div>');
+				//'</div>'+
+            //'</div>');
+			this.$back = $('<div id="backdrop'+(arg.id ? arg.id : "" )+'" class="'+cssPrefix+'-backdrop" style="'+(arg.zIndex ? 'z-index:'+(arg.zIndex - 1) : "")+'"></div>');
 			this.isShown = true;
             this.$parentDom = $(this);
 			this.$parentDom.append(this.$modal);
-            this.$back  = $("."+cssPrefix+"-backdrop",this.$modal);
+			if(arg.modal){
+                this.$parentDom.append(this.$back);
+			}
             this.$header= $("."+cssPrefix+"-header",this.$modal);
             this.$footer= $("."+cssPrefix+"-footer",this.$modal);
             this.$bodyer= $("."+cssPrefix+"-body",this.$modal);
+            this.$modalTitle = $("."+cssPrefix+"-title",this.$modal);
+            //设置弹出层的标题
+            if(!arg.title){
+                this.$modalTitle.hide();
+            }
             //设置弹出层的内容
             if(arg.url){
                 this.$bodyer.append('<iframe width="100%" height="100%" frameborder="0" style="border:none 0;" allowtransparency="true" id="iModalFrame" src="' + arg.url + '"></iframe>');
-			}else{
+            }else{
                 if(arg.innerHtml){
                     this.$bodyer.append(arg.innerHtml);
                 }else{
@@ -87,13 +97,10 @@ if (typeof jQuery === 'undefined') {
                     }
 				}
 			}
-            this.$popup= $("."+cssPrefix+"-popup",this.$modal);
-            this.$modalTitle = $("."+cssPrefix+"-title",this.$modal);
 
-            //设置弹出层的标题
-            if(!arg.title){
-                this.$modalTitle.hide();
-			}
+            //设置弹出层的宽高
+            iModalMethods.resize.call(this,arg.width,arg.height);
+            iModalMethods.escape.call(this);
 
             //判断是否支持点击遮罩层关闭弹出层
             var closeSelector = "."+cssPrefix+"-close";
@@ -105,24 +112,37 @@ if (typeof jQuery === 'undefined') {
                 iModalMethods.hidden.call($this)
 			});
 
-            //设置弹出层的宽高
-            iModalMethods.resize.call(this,arg.width,arg.height);
-            iModalMethods.escape.call(this);
+            //窗口调整
+            $($("body").selector == "body" ? window : this).on("resize.modal",function () {
+                iModalMethods.resize.call($this,arg.width,arg.height);
+            });
 		},
 		hidden  : function(){
             this.$modal.hide();
+            this.$back.hide();
 		},
         resize : function(width,height){
             var w = width || this.options.width;
             var h = height || this.options.height;
 			if(w){
                 w = w < 300 ? 300 : w;
-                this.$popup.width(w).css("marginLeft",("-"+ w/2 +"px"));
+                this.$modal.width(w);
+                if(w == "100%"){
+                    this.$modal.css({"left":0,"marginLeft":0});
+				}else{
+                    this.$modal.css({"marginLeft":("-"+ w/2 +"px")});
+                }
 			}
             if(h){
                 h = h < 300 ? 300 : h;
-                this.$popup.height(h).css("marginTop","-"+ h/2 +"px");
+                this.$modal.height(h);
                 var hh = this.$header.outerHeight(true),fh = this.$footer.outerHeight(true);
+                if(h == "100%"){
+                    h = this.$modal.outerHeight();
+                    this.$modal.css({"top":0,"marginTop":0});
+                }else{
+                    this.$modal.css({"marginTop":("-"+ h/2 +"px")});
+                }
                 if((h - hh - fh) > 0){
                     this.$bodyer.height(h - hh - fh);
                 }
