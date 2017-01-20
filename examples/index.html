@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>iModal-SmaChen</title>
-    <meta name="Copyright" content="Smachen" />
-    <!-- Bootstrap -->
-    <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="../node_modules/animate.css/animate.min.css" rel="stylesheet">
-    <link href="../node_modules/selectize/dist/css/selectize.css" rel="stylesheet">
-	<link href="../src/css/imodal.css" rel="stylesheet">
-    <style>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+      <title>弹出层组件iModal</title>
+      <meta name="Copyright" content="Smachen" />
+      <!-- Bootstrap -->
+      <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+      <link href="../node_modules/normalize.css/normalize.css" rel="stylesheet">
+      <link href="../node_modules/animate.css/animate.min.css" rel="stylesheet">
+      <link href="../node_modules/selectize/dist/css/selectize.css" rel="stylesheet">
+      <link href="../src/css/imodal.css" rel="stylesheet">
+
+      <style>
       body,button {
           background-color: #F4F4F4;
           color: #444;
@@ -25,7 +27,7 @@
       .selectize-control{ float:left; }
       .rowMg>.imodal-btn {margin-top:10px;}
       .rowPd{padding:10px 0;}
-      .selectize-input{padding:9px 8px;}
+      .selectize-input{padding:7px 8px;}
       </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -41,12 +43,12 @@
     <div class="container">
         <h3>iModals V1.0</h3>
         <div class="rowMg">
-            <button class="imodal-btn">普通弹出</button>
+            <button class="imodal-btn" data-options="url:'test.html'">普通弹出</button>
             <button class="imodal-btn" data-options="width:600,height:500,url:'test.html'">600*500弹出</button>
             <button class="imodal-btn" data-options="width:'100%',height:'100%',url:'http://www.baidu.com'">弹出外部窗口</button>
             <button class="imodal-btn" data-options="invokeElementId:'imodalID'">ID选择器内容</button>
-            <button class="imodal-btn" data-options="innerHtml:'<h4>Overflowing text to show scroll behavior</h4>'">HTML内容</button>
-            <button class="imodal-btn" data-options="modal:false,url:'test.html'">无遮罩层</button>
+            <button class="imodal-btn" data-options="innerHtml:'<div style=\'padding:10px\'><h4>页面内容，开始HTML</h4><br><br><br><br><br><br><br><h4>结束HTML</h4></div>'">HTML内容</button>
+            <button class="imodal-btn" data-options="width:600,height:500,modal:false,url:'test.html'">无遮罩层</button>
             <button class="imodal-btn" data-width="600" data-height="500">测试</button>
             <button class="imodal-btn" data-width="600" data-height="500">测试</button>
         </div>
@@ -153,7 +155,9 @@
                 defaultOpton.animateCls = $("#animateSel").val();
                 delete defaultOpton.animate;
             }
-            var im = $.iModal(defaultOpton);
+            var im = $(document.body).iModal(defaultOpton);
+            //console.log(im.getAttr("show"));
+            //console.log($(window).iModal("getAttr","show"));
         })
         
         $("#closeiModal").on("click",function () {
