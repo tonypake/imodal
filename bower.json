@@ -13,7 +13,7 @@
     "plugin",
     "web"
   ],
-  "homepage": "https://github.com/cleverchen/imodal",
+  "homepage": "https://github.com/smachen/iModal",
   "ignore": [
     "**/.*",
     "node_modules",
