@@ -1,5 +1,5 @@
 {
-  "name": "imodal",
+  "name": "iModal",
   "version": "1.0.0",
   "description": "支持iframe的弹出层，自定义样式",
   "main": "src/css/imodal.css,src/js/imodal.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/imodal/imodal.git"
+    "url": "https://github.com/smachen/iModal.git"
   },
   "keywords": [
     "css",
@@ -20,9 +20,9 @@
   "author": "smachen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/imodal/imodal/issues"
+    "url": "https://github.com/smachen/iModal/issues"
   },
-  "homepage": "https://github.com/imodal/imodal#readme",
+  "homepage": "https://github.com/smachen/iModal#readme",
   "devDependencies": {
     "bower": "^1.8.0",
     "grunt": "^1.0.1",
@@ -31,7 +31,8 @@
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "normalize.css": "^5.0.0"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
