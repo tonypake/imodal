@@ -1,5 +1,5 @@
-# :sparkles:[iModal](https://github.com/imodal/imodal.git):sparkles: ##
-### 演示地址： [imodal.github.io](https://imodal.github.io/imodal) ###
+# [iModal](https://github.com/smachen/iModal.git) #
+### 演示地址： [imodal.github.io](https://imodal.github.io) ###
 
 ## 哪些功能 ##
   - [x] 自定义弹出层的配置
@@ -30,7 +30,7 @@
 <link href="./src/css/imodal.css" rel="stylesheet">
 ```
 ```javascript
-$.iModal(属性或方法);
+$(document).iModal(属性或方法);
 ```
 
 #### IE8浏览器支持 ##
