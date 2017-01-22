@@ -8,34 +8,26 @@ if (typeof jQuery === 'undefined') {
 	if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1)) {
 		throw new Error('Dialog\'s JavaScript requires jQuery version 1.9.1 or higher');
 	}
-    /****以下私有属性****/
-    var iModalPrivate = {
-        $modal : null,
-        $back : null,
-        $parentDom : null,
-        $modalTitle : null,
-        $InnerFrame : null,
-        $InnerWin : null,
-        $InnerDoc : null,
-        $CancelButton : null,
-        $OKButton : null
-    }
-    var iModalOption = {
+    var DEFAULT = {
         /****以下属性以驼峰是写法，可以在调用show()方法前设置值****/
         id : "",
-        show : true,									//是否立即显示
-        title : "",										//弹出层的标题，如果为空，则没有弹出层的标题
-        width : 500,									//弹出层的宽
-        height : 300,									//弹出层的高
+        title : "",										//标题，如果为空，则没有弹出层的标题
+        width : 500,									//宽
+        height : 300,									//高
         clsName:'',										//弹出层最外层的样式，可以选择覆盖，也可以追加新样式
         animateCls:'',									//弹出层弹出时的动画样式
-        modal : true,									//是否有遮罩层
         backdrop: true,									//点击遮罩层关闭
         zIndex : 900,									//弹出层的平面位置
+        isModal: true,									//是否有遮罩层
+        isShow : false,									//是否已经显示
+        isDebug: true,                                  //debug是否打开
+        isDrag : true,                                  //是否支持拖拽
         url : null,										//弹出层的内容可以是某个url路径，优先级最高
         innerHtml : "",									//弹出层的内容可以是某个html内容，优先级其次
         invokeElementId : "",							//弹出层的内容可以是页面某ID元素，优先级最低
         keyboard : true,								//键盘上的 esc 键被按下时关闭模态框
+        okBtn : "确定",                                  //按钮的名称
+        cancelBtn : "取消",                              //按钮的名称
         top : "50%",
         left : "50%",
         showButtonRow : false,
@@ -43,57 +35,58 @@ if (typeof jQuery === 'undefined') {
         messageTitle : "",
         message : "",
         showMessageRow : false,
-        drag : true,
         autoClose : null,
         showCloseButton : true,
 
         //以下是事件的配置
-        onLoad : null,
+        onLoad : function(){                            //弹出层加载完毕，主要是iframe加载
+        },
         okEvent : null, 								//点击确定后调用的方法
         cancelEvent : null 								//点击取消及关闭后调用的方法
 	}
 	var iModal = function($targets,options){
-        this.options = options;
-        var $this = this,csspre = iModal.CssPrefix,arg = options;
-        var $modal = $('<div id="imodal'+(arg.id ? arg.id : "" )+'" tabindex="1" class="'+csspre+'-container" style="">'+
-            '<div class="'+csspre+'-content">'+
-            '<div class="'+csspre+'-header">'+
-            '	<button type="button" class="'+csspre+'-close" data-dismiss="modal"><span aria-hidden="true">×</span></button>'+
-            '   <div class="'+csspre+'-title" id=""></div>'+
-            '</div>'+
-            '<div class="'+csspre+'-body"></div>'+
-            '<div class="'+csspre+'-footer">'+
-            '	<button type="button" class="'+csspre+'-btn">确&nbsp;&nbsp;认</button>'+
-            '	<button type="button" class="'+csspre+'-btn" data-dismiss="modal">取&nbsp;&nbsp;消</button>'+
-            '</div>'+
-            '</div>');
-        var $back = $('<div id="backdrop'+(arg.id ? arg.id : "" )+'" class="'+csspre+'-backdrop" style=""></div>');
-        $targets.append($modal);
-        $targets.append($back);
-        this.$targets = $targets;
-        this.$back  = $back;
-        this.$modal = $modal;
-        this.$header= $("."+csspre+"-header",$modal);
-        this.$footer= $("."+csspre+"-footer",$modal);
-        this.$bodyer= $("."+csspre+"-body",$modal);
-        this.$title = $("."+csspre+"-title",$modal);
-        this.show();
+        var $this = this;
+        $this.options = options;
+        if($targets) this.show($targets);
 	};
-    iModal.Version = "1.0.0";								//版本号
-    iModal.CssPrefix = "imodal";							//css前缀
-    iModal.Namespace = "sma.imodal";						//命名空间
 
     iModal.prototype = {
-		show    : function(){
-            var $this = this,csspre = iModal.CssPrefix,arg = this.options;
-            $this.$modal.show();
-            $this.$back.show();
+        version : "1.0.0",								//插件版本号
+        cssPrefix:"imodal",							    //css前缀
+        nameSpace: "sma.imodal",						//命名空间
+		show    : function($targets){
+            var $this = this,csspre = this.cssPrefix,arg = this.options;
+
+            var $modal = $('<div id="imodal'+(arg.id ? arg.id : "" )+'" tabindex="1" class="'+csspre+'-container" style="">'+
+                '<div class="'+csspre+'-content">'+
+                '<div class="'+csspre+'-header">'+
+                '	<button type="button" class="'+csspre+'-close" data-dismiss="modal"><span aria-hidden="true">×</span></button>'+
+                '   <div class="'+csspre+'-title" id=""></div>'+
+                '</div>'+
+                '<div class="'+csspre+'-body"></div>'+
+                '<div class="'+csspre+'-footer">'+
+                '	<button type="button" class="'+csspre+'-btn">确&nbsp;&nbsp;认</button>'+
+                '	<button type="button" class="'+csspre+'-btn" data-close="true">取&nbsp;&nbsp;消</button>'+
+                '</div>'+
+                '</div>');
+            var $back = $('<div id="backdrop'+(arg.id ? arg.id : "" )+'" class="'+csspre+'-backdrop" style=""></div>');
+            $targets.append($modal);
+            $targets.append($back);
+            this.$targets = $targets;
+            this.$back  = $back;
+            this.$modal = $modal;
+            this.$header= $("."+csspre+"-header",$modal);
+            this.$footer= $("."+csspre+"-footer",$modal);
+            this.$bodyer= $("."+csspre+"-body",$modal);
+            this.$title = $("."+csspre+"-title",$modal);
+
+            arg.isShow = true;
 			//设置动画效果
 			if(arg.animateCls) $this.$modal.addClass('animated '+arg.animateCls);
             //设置弹出层样式
-            if(arg.clsName) $this.$modal.addClass(clsName);
+            if(arg.clsName) $this.$modal.addClass(arg.clsName);
 			//设置是否有遮罩层
-            if(!arg.modal) $this.$back.hide();
+            if(!arg.isModal) $this.$back.hide();
             //设置弹出层的标题
             if(!arg.title) $this.$title.hide();
             else $this.$title.html(arg.title);
@@ -102,14 +95,14 @@ if (typeof jQuery === 'undefined') {
             if(arg.zIndex) $this.$back.css("zIndex",arg.zIndex-1);
 
             //设置弹出层的内容
-            $this.$bodyer.html("");
+            //$this.$bodyer.html("");
             if(arg.url){
-                $this.$bodyer.append('<iframe width="100%" height="100%" frameborder="0" style="border:none 0;" scrolling="auto" allowtransparency="true" id="iModalFrame" src="' + arg.url + '"></iframe>');
+                $this.$bodyer.append('<iframe width="100%" height="100%" frameborder="0" style="border:none 0;" scrolling="auto" allowtransparency="true" id="iModalFrame" src="' + arg.url + '"></iframe>').css("overflow","");
             }else{
                 if(arg.innerHtml){
-                    $this.$bodyer.append(arg.innerHtml);
+                    $this.$bodyer.append(arg.innerHtml).css("overflow","auto");
                 }else{
-                    if(arg.invokeElementId) $this.$bodyer.append($("#"+arg.invokeElementId).clone().show().prop("outerHTML"));
+                    if(arg.invokeElementId) $this.$bodyer.append($("#"+arg.invokeElementId).clone().show().prop("outerHTML")).css("overflow","auto");
                 }
             }
 
@@ -124,10 +117,27 @@ if (typeof jQuery === 'undefined') {
             $this.resize();
             //键盘事件支持
             $this.escape();
+            $this.console("Onload 开始加载...");
+            if(!arg.url) {
+                arg.onLoad();
+                $this.console("Onload 加载完毕...");
+            }else{
+                $("iframe",$this.$modal).load(function(){
+                    arg.onLoad();
+                    $this.console("Onload 加载完毕...");
+                });
+            }
+
+            if(arg.isDrag) {
+                //是否支持标图拖拽
+                $this.$title.css("cursor","move");
+                $this.drag($this.$modal);
+            }
 		},
 		hidden  : function(){
-            this.$modal.hide();
-            this.$back.hide();
+            this.options.isShow = false;
+            this.$modal.hide().remove();
+            this.$back.hide().remove();
 		},
 		getAttr : function (arg) {
 			var $this = this;
@@ -144,7 +154,7 @@ if (typeof jQuery === 'undefined') {
                 if(w == "100%"){
                     this.$modal.css({"left":0,"marginLeft":0});
 				}else{
-                    this.$modal.css({"marginLeft":("-"+ w/2 +"px")});
+                    this.$modal.css({"left":"50%","top":"50%","marginLeft":("-"+ w/2 +"px")});
                 }
 			}
             if(h){
@@ -155,7 +165,7 @@ if (typeof jQuery === 'undefined') {
                     h = this.$modal.outerHeight();
                     this.$modal.css({"top":0,"marginTop":0});
                 }else{
-                    this.$modal.css({"marginTop":("-"+ h/2 +"px")});
+                    this.$modal.css({"left":"50%","top":"50%","marginTop":("-"+ h/2 +"px")});
                 }
                 if((h - hh - fh) > 0){
                     this.$bodyer.height(h - hh - fh);
@@ -164,36 +174,71 @@ if (typeof jQuery === 'undefined') {
 		},
         escape : function(){
         	var $this = this;
-        	var modal = this.$modal;
-            if (this.isShown && this.options.keyboard) {
+        	var modal = $this.$modal,arg = $this.options;
+            if (arg.keyboard) {
                 modal.trigger('focus');
-                modal.on('keydown.imodal', function (e) {
-                    e.which == 27 && iModalMethods.hidden.call($this);
+                modal.on('keydown.'+$this.namespace, function (e) {
+                    e.which == 27 && arg.isShow && $this.hidden();
                 });
                 $("iframe",modal).load(function(){
-                    $(this.contentWindow.document).on("keydown.imodal",function(e){
-                        e.which == 27 && iModalMethods.hidden.call($this);
+                    $(this.contentWindow.document).on('keydown.'+$this.namespace,function(e){
+                        e.which == 27 && arg.isShow && $this.hidden();
                     });
                 });
-            } else if (!this.isShown) {
-                modal.off('keydown.imodal')
+            } else {
+                modal.off('keydown.'+$this.namespace)
             }
-		}
+		},
+        //-----以下是工具方法，全局调用
+        //拖拽方法
+        drag : function($tar){
+            var $this = this,_x = 0,_y = 0,_move=false;//_move移动标记 ,_x,_y鼠标离控件左上角的相对位置
+            $tar.click(function(){
+                //alert("click");//点击（松开后触发）
+            }).mousedown(function(e){
+                _move = true;
+                _x = e.pageX - parseInt($(this).position().left);
+                _y = e.pageY - parseInt($(this).position().top);
+                $(this).fadeTo(20, 0.5);//点击后开始拖动并透明显示
+            });
+            $(document).on({'mousemove' : function(e){
+                if(_move){
+                    var x = e.pageX - _x;//移动时根据鼠标位置计算控件左上角的绝对位置
+                    var y = e.pageY - _y;
+                    $tar.css({top : y,left : x});//控件新位置
+                }
+            },'mouseup' : function(){
+                _move = false;
+                $tar.fadeTo("fast", 1);//松开鼠标后停止移动并恢复成不透明
+            }});
+        },
+        //判断是否是打印
+        console : function (arg){
+            if(!this.options || this.options.isDebug){
+                if(window.console) {
+                    console.info("[iModal] "+arg);
+                } else {
+
+                }
+            }
+        },
+        //判断是否是方法
+        isFunction : function(arg){
+            if($.isFunction(arg)){
+                return true;
+            }else{
+                $.error('请检查'+arg+'是否是一个正确的方法');
+            }
+        }
 	};
 
 	$.fn.iModal = function(option,parameter){
-		var $this = this,data = this.data(iModal.Namespace);
+		var $this = this,data = this.data($this.namespace);
 
         if (typeof option == 'object') {
-            var options = $.extend({}, iModalOption,$this.data(), option);
-
-            if(!data) {
-            	$this.data(iModal.Namespace, (data = new iModal(this, options)));
-            } else {
-            	data.options = options;
-            	data.show();
-            }
-            return data;
+            var options = $.extend({}, DEFAULT,$this.data(), option);
+            options.id = (new Date()-0)%10086;
+            return data = new iModal(this, options);
         }else if (typeof option == 'string' && data) {
 			if(data[option]) return data[option](parameter);
 			else $.error('Method '+ option +' does not exist on iModal');
@@ -202,4 +247,5 @@ if (typeof jQuery === 'undefined') {
         }
 	};
     $.fn.iModal.Constructor = iModal;
+    window.iModal = new iModal();
 })(jQuery);
