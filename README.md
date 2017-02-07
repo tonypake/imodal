@@ -52,39 +52,89 @@ $(document).iModal(属性或方法);
 		<th width="10%" align="center">默认值</th>
 	</tr>
 	<tr>
-    	<td>title</td>
+    	<td align="center">title</td>
     	<td>标题，如果为空，则标题那块的元素隐藏显示</td>
-    	<td>""</td>
+    	<td align="center">""</td>
     </tr>
     <tr>
-        <td>width</td>
+        <td align="center">width</td>
         <td>弹出层的宽度，单位为px，支持%</td>
-        <td>500</td>
+        <td align="center">500</td>
     </tr>
     <tr>
-        <td>height</td>
+        <td align="center">height</td>
         <td>弹出层的高度度，单位为px，支持%</td>
-        <td>300</td>
+        <td align="center">300</td>
     </tr>
     <tr>
-        <td>clsName</td>
+        <td align="center">clsName</td>
         <td>弹出层最外层的样式，可以选择覆盖，也可以追加新样式</td>
-        <td>""</td>
+        <td align="center">""</td>
     </tr>
     <tr>
-        <td>animateCls</td>
+        <td align="center">animateCls</td>
         <td>弹出层弹出时的动画样式</td>
-        <td>""</td>
+        <td align="center">""</td>
     </tr>
     <tr>
-        <td>backdrop</td>
+        <td align="center">backdrop</td>
         <td>点击遮罩层时关闭弹出层</td>
-        <td>true</td>
+        <td align="center">true</td>
     </tr>
     <tr>
-        <td>zIndex</td>
+        <td align="center">zIndex</td>
         <td>弹出层的平面位置</td>
-        <td>900</td>
+        <td align="center">900</td>
+    </tr>
+    <tr>
+        <td align="center">isModal</td>
+        <td>弹出层是否有遮罩层</td>
+        <td align="center">true</td>
+    </tr>
+    <tr>
+        <td align="center">isShow</td>
+        <td>弹出层是否立即显示</td>
+        <td align="center">false</td>
+    </tr>
+    <tr>
+        <td align="center">isDebug</td>
+        <td>弹出层是否打开debug，一般用于开发环境</td>
+        <td align="center">false</td>
+    </tr>
+    <tr>
+        <td align="center">isDrag</td>
+        <td>弹出层是否支持按住标题拖拽</td>
+        <td align="center">true</td>
+    </tr>
+    <tr>
+        <td align="center">url</td>
+        <td>弹出层的内容可以是url路径,html内容，ID元素选择器，url的优先级最高</td>
+        <td align="center">null</td>
+    </tr>
+    <tr>
+        <td align="center">innerHtml</td>
+        <td>弹出层的内容可以是html内容，优先级其次</td>
+        <td align="center">""</td>
+    </tr>
+    <tr>
+        <td align="center">invokeElementId</td>
+        <td>弹出层的内容可以是ID元素选择器，优先级最低</td>
+        <td align="center">""</td>
+    </tr>
+    <tr>
+        <td align="center">keyboard</td>
+        <td>弹出层支持键盘操作，如 esc 键被按下时关闭模态框</td>
+        <td align="center">true</td>
+    </tr>
+    <tr>
+        <td align="center">okBtn</td>
+        <td>弹出层底部第一个按钮的文字</td>
+        <td align="center">确认</td>
+    </tr>
+    <tr>
+        <td align="center">cancelBtn</td>
+        <td>弹出层底部第二个按钮的文字</td>
+        <td align="center">取消</td>
     </tr>
 </table>
 
