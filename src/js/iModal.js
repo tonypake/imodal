@@ -66,7 +66,7 @@ if (typeof jQuery === 'undefined') {
                 '<div class="'+csspre+'-body"></div>'+
                 '<div class="'+csspre+'-footer">'+
                 '	<button type="button" class="'+csspre+'-btn">确&nbsp;&nbsp;认</button>'+
-                '	<button type="button" class="'+csspre+'-btn" data-close="true">取&nbsp;&nbsp;消</button>'+
+                '	<button type="button" class="'+csspre+'-cancel '+csspre+'-btn" data-close="true">取&nbsp;&nbsp;消</button>'+
                 '</div>'+
                 '</div>');
             var $back = $('<div id="backdrop'+(arg.id ? arg.id : "" )+'" class="'+csspre+'-backdrop" style=""></div>');
@@ -107,7 +107,7 @@ if (typeof jQuery === 'undefined') {
             }
 
             //判断是否支持点击遮罩层关闭弹出层
-            var closeSelector = "."+csspre+"-close";
+            var closeSelector = "."+csspre+"-close,."+csspre+"-cancel";
             if(arg.backdrop) closeSelector += ",."+csspre+"-backdrop";
             //关闭弹出层
             $(closeSelector,$this.$modal).on("click.imodal",function(){
