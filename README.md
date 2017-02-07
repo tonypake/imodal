@@ -30,7 +30,7 @@
 <link href="./src/css/imodal.css" rel="stylesheet">
 ```
 ```javascript
-$(document).iModal(属性或方法);
+$("body").iModal(属性或方法);
 ```
 
 #### IE8浏览器支持 ##
