@@ -1,5 +1,5 @@
 {
-  "name": "iModal",
+  "name": "imodal",
   "description": "支持iframe的弹出层，自定义样式",
   "main": "src/css/imodal.css,src/js/imodal.js",
   "authors": [
@@ -13,7 +13,7 @@
     "plugin",
     "web"
   ],
-  "homepage": "https://github.com/smachen/iModal",
+  "homepage": "https://github.com/smachen/imodal",
   "ignore": [
     "**/.*",
     "node_modules",
