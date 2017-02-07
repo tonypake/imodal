@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         banner: '/*!\n' +
         ' * Dialog v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
         ' * Copyright 2016-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' * Licensed under MIT (https://github.com/cleverche/iModal/blob/master/LICENSE)\n' +
+        ' * Licensed under MIT (https://github.com/smachen/imodal/blob/master/LICENSE)\n' +
         ' */\n',
         //任务配置
         //清除内容任务
