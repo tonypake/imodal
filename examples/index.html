@@ -27,10 +27,9 @@
       pre code{font:normal 10pt Consolas, Monaco, monospace;}
       .container{ width:980px;margin:0 auto; }
       .selectize-control{ float:left; }
-      .rowMg>.imodal-btn {margin-top:10px;}
-      .rowPd{padding:10px 0;}
       .selectize-input{padding:7px 8px;}
       .abc .imodal-content{background:#c3c3c3;}
+      .fixedElem{position: fixed;bottom:10px;left:10px;background:#fff;z-index:901;padding:10px;border:1px solid #c3c3c3;}
       </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,18 +44,82 @@
   <body>
     <div class="container">
         <h3>iModals V1.0</h3>
-        <div class="rowMg">
-            <button class="imodal-btn" data-options="url:'test.html'">普通弹出</button>
-            <button class="imodal-btn" data-options="width:600,height:500,url:'test.html'">600*500弹出</button>
-            <button class="imodal-btn" data-options="width:'100%',height:'100%',url:'http://www.baidu.com'">弹出外部窗口</button>
-            <button class="imodal-btn" data-options="invokeElementId:'imodalID'">ID选择器内容</button>
-            <button class="imodal-btn" data-options="innerHtml:'<div style=\'padding:10px\'><div>页面内容，开始HTML</div><br><br><br><br><br><br><br><div>结束HTML</div></div>'">HTML内容</button>
-            <button class="imodal-btn" data-options="width:600,height:500,isModal:false,url:'test.html'">无遮罩层</button>
-            <button class="imodal-btn" data-options="width:600,height:500,url:'test.html',onLoad:function(){alert('页面加载完毕')}">加载完毕</button>
-            <button class="imodal-btn" data-width="600" data-height="500">测试</button>
-        </div>
-        <div class="rowPd">
-            <select id="animateSel" style="width:200px;margin-top:10px;">
+        <!-- 普通弹出demo代码开始 -->
+        <button class="imodal-btn" data-options="url:'test.html'">普通弹出</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title : '普通弹出',
+    url   : 'test.html'
+});</code></pre>
+        <!-- 普通弹出demo代码结束 -->
+
+        <!-- 600*500弹出demo代码开始 -->
+        <button class="imodal-btn" data-options="width:600,height:500,url:'test.html'">600*500弹出</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title : '600*500弹出',
+    width : 600,
+    height: 500
+    url   : 'test.html'
+});</code></pre>
+        <!-- 600*500弹出demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="width:'100%',height:'100%',url:'http://www.baidu.com'">弹出外部窗口</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title : '弹出外部窗口',
+    width : '100%',
+    height: '100%',
+    url   : 'http://www.baidu.com'
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="invokeElementId:'imodalID'">ID选择器内容</button>
+        <pre><code class="html">&lt;div id='imodalID' style='padding:0.9em;display:none;'&gt;
+    &lt;h4&gt;Overflowing text to show scroll behavior&lt;/h4&gt;
+    &lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
+    &lt;p&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&lt;/p&gt;
+    &lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna,
+    vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+        <pre><code class="javascript">$(document.body).iModal({
+    title          : 'ID选择器内容',
+    invokeElementId: 'imodalID'
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="innerHtml:'<div style=\'padding:10px\'><div>页面内容，开始HTML</div><br><br><br><br><br><br><br><div>结束HTML</div></div>'">HTML内容</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title    : 'HTML内容',
+    innerHtml: '&lt;div style="padding:10px"&gt;&lt;div&gt;页面内容，开始HTML&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;div&gt;结束HTML&lt;/div&gt;&lt;/div&gt;'
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="isModal:false,url:'test.html'">无遮罩层</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title  : '无遮罩层',
+    isModal: false,
+    url    : 'test.html'
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="url:'test.html',onLoad:function(){alert('页面加载完毕')}">加载完毕</button>
+        <pre><code class="javascript">$(document.body).iModal({
+    title  : '加载完毕',
+    url    : 'test.html',
+    onLoad : function(){
+        alert('页面加载完毕');
+    }
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <!-- demo代码开始 -->
+        <select id="animateSel" style="width:200px;margin-top:10px;">
                 <optgroup label="Attention Seekers">
                     <option value="bounce">bounce</option>
                     <option value="flash">flash</option>
@@ -123,26 +186,30 @@
                     <option value="rollOut">rollOut</option>
                 </optgroup>
             </select>
-            <button class="imodal-btn" data-animate="true" data-options="url:'test.html'" style="float:left;margin-left:5px;">动画</button>
-            <div style="clear:both;"></div>
-        </div>
+        <button class="imodal-btn" data-animate="true" data-options="url:'test.html'" style="float:left;margin-left:5px;">动画</button>
+        <div style="clear:both;"></div>
         <pre><code class="javascript">$(document.body).iModal({
-    title: 'iModal弹出层',
-    animateCls: $("#animateSel").val(),
-    url: 'test.html'
+    title  : '动画',
+    url    : 'test.html',
+    animateCls : $("#animateSel").val()
 });</code></pre>
+        <!-- demo代码结束 -->
+
     </div>
+
     <div id="imodalID" style="padding:0.9em;display:none;">
         <h4>Overflowing text to show scroll behavior</h4>
         <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p></div>
+        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
     </div>
-    <div style="position: fixed;bottom:10px;background:#fff;z-index:901;padding:10px;">
+    <div class="fixedElem" style="">
         当前层的zIndex ：901<br><br>
         默认弹出层的zIndex ：900<br><br>
-        <a href="javascript:void(0);">关闭弹出层</a>
+        <a href="javascript:void(0);" id="closeiModal">关闭弹出层</a>
     </div>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../node_modules/jquery/jquery.min.js"></script>
     <!-- 下拉框组件 -->
@@ -156,6 +223,7 @@
 
 	<!-- 这里是插件源代码 <script src="src/bootstrap.dropdown.js"></script> -->
 	<script>
+    var imModal;
 	$(document).ready(function(){
         $("#animateSel").selectize();
         iModal.console(iModal.version);
@@ -168,7 +236,7 @@
                 defaultOpton.animateCls = $("#animateSel").val();
                 delete defaultOpton.animate;
             }
-            var im = $(document.body).iModal(defaultOpton);
+            imModal = $(document.body).iModal(defaultOpton);
             //console.log(im.getAttr("show"));
             //console.log($(window).iModal("getAttr","show"));
         });
@@ -178,7 +246,7 @@
             hljs.highlightBlock(block,"   ",true);
         });*/
         $("#closeiModal").on("click",function () {
-            
+            imModal.hidden();
         });
     });
     // display scripts on the page
