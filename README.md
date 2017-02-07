@@ -51,6 +51,41 @@ $(document).iModal(属性或方法);
 		<th width="82%" align="left">描述</th>
 		<th width="10%" align="center">默认值</th>
 	</tr>
+	<tr>
+    	<td>title</td>
+    	<td>标题，如果为空，则标题那块的元素隐藏显示</td>
+    	<td>""</td>
+    </tr>
+    <tr>
+        <td>width</td>
+        <td>弹出层的宽度，单位为px，支持%</td>
+        <td>500</td>
+    </tr>
+    <tr>
+        <td>height</td>
+        <td>弹出层的高度度，单位为px，支持%</td>
+        <td>300</td>
+    </tr>
+    <tr>
+        <td>clsName</td>
+        <td>弹出层最外层的样式，可以选择覆盖，也可以追加新样式</td>
+        <td>""</td>
+    </tr>
+    <tr>
+        <td>animateCls</td>
+        <td>弹出层弹出时的动画样式</td>
+        <td>""</td>
+    </tr>
+    <tr>
+        <td>backdrop</td>
+        <td>点击遮罩层时关闭弹出层</td>
+        <td>true</td>
+    </tr>
+    <tr>
+        <td>zIndex</td>
+        <td>弹出层的平面位置</td>
+        <td>900</td>
+    </tr>
 </table>
 
 <table width="100%">
