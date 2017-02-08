@@ -32,9 +32,9 @@
 ```
 ```javascript
 //初始化
-var im = $("body").iModal(属性);
-//方法调用,如获取标题
-var title = im.getAttr("title");
+var im = $("body").iModal({属性名:属性值,事件名:function(){}});
+//方法调用，参数为属性名
+var value = im.getAttr(属性名);
 ```
 
 #### IE8浏览器支持 ##
