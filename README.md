@@ -117,7 +117,7 @@ $("body").iModal(属性或方法);
         <td align="center">""</td>
     </tr>
     <tr>
-        <td align="center">invokeElementId</td>
+        <td align="center">invokeElemId</td>
         <td>弹出层的内容可以是ID元素选择器，优先级最低</td>
         <td align="center">""</td>
     </tr>
@@ -141,6 +141,30 @@ $("body").iModal(属性或方法);
 <table width="100%">
     <tr>
         <th colspan="3" align="left" width="100%">
+            <a href="#meths" name="meths">事件</a>
+        </th>
+    </tr>
+	<tr>
+		<th width="10%" align="center">名称</th>
+        <th width="90%" align="left">描述</th>
+	</tr>
+	<tr>
+        <td align="center">onLoad</td>
+        <td>弹出层加载完毕后进行的操作，如果内容是iframe新页面，则是页面加载完毕后的操作</td>
+    </tr>
+    <tr>
+        <td align="center">okEvent</td>
+        <td>弹出层点击确认按钮的事件</td>
+    </tr>
+    <tr>
+        <td align="center">cancelEvent</td>
+        <td>弹出层点击取消按钮的事件</td>
+    </tr>
+</table>
+
+<table width="100%">
+    <tr>
+        <th colspan="3" align="left" width="100%">
             <a href="#meths" name="meths">方法</a>
         </th>
     </tr>
@@ -149,4 +173,14 @@ $("body").iModal(属性或方法);
         <th width="82%" align="left">描述</th>
         <th width="10%" align="center">参数</th>
 	</tr>
+	<tr>
+        <td align="center">hidden</td>
+        <td>弹出层关闭隐藏方法</td>
+        <td align="center"></td>
+    </tr>
+    <tr>
+        <td align="center">getAttr</td>
+        <td>获取弹出层配置属性的方法</td>
+        <td align="center">属性名称(string)</td>
+    </tr>
 </table>
