@@ -27,10 +27,14 @@
 ## 使用方法 ##
 ```html 
 <script src="./src/js/imodal.js"></script>
+<script src="../node_modules/jquery/jquery.min.js"></script>
 <link href="./src/css/imodal.css" rel="stylesheet">
 ```
 ```javascript
-$("body").iModal(属性或方法);
+//初始化
+var im = $("body").iModal(属性);
+//方法调用,如获取标题
+var title = im.getAttr("title");
 ```
 
 #### IE8浏览器支持 ##
@@ -73,7 +77,7 @@ $("body").iModal(属性或方法);
     </tr>
     <tr>
         <td align="center">animateCls</td>
-        <td>弹出层弹出时的动画样式</td>
+        <td>弹出层弹出时的动画样式，使用此功能必须引入animate.css</td>
         <td align="center">""</td>
     </tr>
     <tr>
