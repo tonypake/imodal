@@ -24,10 +24,10 @@ if (typeof jQuery === 'undefined') {
         isDrag : true,                                  //是否支持拖拽
         url : null,										//弹出层的内容可以是某个url路径，优先级最高
         innerHtml : "",									//弹出层的内容可以是某个html内容，优先级其次
-        invokeElementId : "",							//弹出层的内容可以是页面某ID元素，优先级最低
+        invokeElemId : "",							//弹出层的内容可以是页面某ID元素，优先级最低
         keyboard : true,								//键盘上的 esc 键被按下时关闭模态框
-        okBtn : "确定",                                  //按钮的名称
-        cancelBtn : "取消",                              //按钮的名称
+        okBtn : "确定",                                  //按钮的文字
+        cancelBtn : "取消",                              //按钮的文字
         top : "50%",
         left : "50%",
         showButtonRow : false,
@@ -102,7 +102,7 @@ if (typeof jQuery === 'undefined') {
                 if(arg.innerHtml){
                     $this.$bodyer.append(arg.innerHtml).css("overflow","auto");
                 }else{
-                    if(arg.invokeElementId) $this.$bodyer.append($("#"+arg.invokeElementId).clone().show().prop("outerHTML")).css("overflow","auto");
+                    if(arg.invokeElemId) $this.$bodyer.append($("#"+arg.invokeElemId).clone().show().prop("outerHTML")).css("overflow","auto");
                 }
             }
 
