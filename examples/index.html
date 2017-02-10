@@ -7,6 +7,7 @@
       <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
       <title>弹出层组件iModal</title>
       <meta name="Copyright" content="Smachen" />
+      <link href="../favicon.ico" rel="icon" type="image/x-icon" />
       <!-- Bootstrap -->
       <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
       <link href="../node_modules/normalize.css/normalize.css" rel="stylesheet">
@@ -43,7 +44,7 @@
   </head>
   <body>
     <div class="container">
-        <h3>iModals V1.0</h3>
+        <h3><img src="../favicon.ico" style="width:68px;height: 68px;vertical-align:middle;"><span style="vertical-align:bottom;margin-left:10px;">iModal V1.0</span></h3>
         <!-- 普通弹出demo代码开始 -->
         <button class="imodal-btn" data-options="url:'test.html'">普通弹出</button>
         <pre><code class="javascript">$("body").iModal({
@@ -73,7 +74,7 @@
         <!-- demo代码结束 -->
 
         <!-- demo代码开始 -->
-        <button class="imodal-btn" data-options="invokeElementId:'imodalID'">ID选择器内容</button>
+        <button class="imodal-btn" data-options="invokeElemId:'imodalID'">ID选择器内容</button>
         <pre><code class="html">&lt;div id='imodalID' style='padding:0.9em;display:none;'&gt;
     &lt;h4&gt;Overflowing text to show scroll behavior&lt;/h4&gt;
     &lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
@@ -86,7 +87,7 @@
 </code></pre>
         <pre><code class="javascript">$("body").iModal({
     title          : 'ID选择器内容',
-    invokeElementId: 'imodalID'
+    invokeElemId: 'imodalID'
 });</code></pre>
         <!-- demo代码结束 -->
 
@@ -202,6 +203,7 @@
         <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
         <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+        <button class="imodal-btn" data-options="url:'test.html'">再次弹出</button>
     </div>
     <div class="fixedElem" style="">
         当前层的zIndex ：901<br><br>
