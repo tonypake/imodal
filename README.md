@@ -11,13 +11,13 @@
     - 弹出层的平面位置
   - [x] 支持使用animate.css的css3动画样式,实现弹出层展示
   - [x] 键盘上的 esc 键被按下时关闭模态框或点击遮罩层可关闭弹出框
-  - [ ] 代替window open,alert,confirm提供良好的用户体验
-  - [ ] 兼容ie6/7/8、firefox2/3、Opera 弹出框在ie6下不会被select控件穿透
-  - [ ] 对iframe下的应用作了充分考虑，适合复杂的系统应用
+  - [x] 对iframe下的应用作了充分考虑，适合复杂的系统应用
   - [x] 弹出层显示的内容
     - 指向一个URL的iframe窗口 
     - 页面内隐藏的元素中的html内容 
     - 直接输出一段html内容
+  - [ ] 代替window open,alert,confirm提供良好的用户体验
+  - [ ] 兼容ie6/7/8、firefox2/3、Opera 弹出框在ie6下不会被select控件穿透
 
 ## 包依赖 ##
 - [normalize](https://github.com/necolas/normalize.css) (样式重置库)
@@ -108,6 +108,11 @@ var value = im.getAttr(属性名);
     <tr>
         <td align="center">isDrag</td>
         <td>弹出层是否支持按住标题拖拽</td>
+        <td align="center">true</td>
+    </tr>
+    <tr>
+        <td align="center">isShowBtn</td>
+        <td>弹出层是否显示确认取消按钮</td>
         <td align="center">true</td>
     </tr>
     <tr>
