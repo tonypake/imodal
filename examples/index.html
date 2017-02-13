@@ -31,6 +31,9 @@
       .selectize-input{padding:7px 8px;}
       .abc .imodal-content{background:#c3c3c3;}
       .fixedElem{position: fixed;bottom:10px;left:10px;background:#fff;z-index:901;padding:10px;border:1px solid #c3c3c3;}
+      fieldset {margin: 10px 0;}
+      fieldset pre{margin:0;}
+      pre code{border-radius:5px;padding:15px !important;}
       </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,12 +48,20 @@
   <body>
     <div class="container">
         <h3><img src="../favicon.ico" style="width:68px;height: 68px;vertical-align:middle;"><span style="vertical-align:middle;margin-left:10px;">iModal V1.0</span></h3>
+        <h4>配置</h4>
         <!-- 普通弹出demo代码开始 -->
         <button class="imodal-btn" data-options="url:'test.html'">普通弹出</button>
         <pre><code class="javascript">$("body").iModal({
     title : '普通弹出',
     url   : 'test.html'
 });</code></pre>
+       <!-- <fieldset>
+            <legend>代码</legend>
+            <pre><code class="javascript">$("body").iModal({
+    title : '普通弹出',
+    url   : 'test.html'
+});</code></pre>
+        </fieldset>-->
         <!-- 普通弹出demo代码结束 -->
 
         <!-- 600*500弹出demo代码开始 -->
@@ -109,6 +120,17 @@
         <!-- demo代码结束 -->
 
         <!-- demo代码开始 -->
+        <button class="imodal-btn" data-options="okBtn:'好&nbsp;&nbsp;的',cancelBtn:'不&nbsp;&nbsp;行',url:'test.html',cancelEvent:function(){alert('你点击了不行')},okEvent:function(){alert('你点击了好的')}">弹出层按钮</button>
+        <pre><code class="javascript">$("body").iModal({
+    title  : '无遮罩层',
+    url    : 'test.html',
+    okBtn  : '好&nbsp;&nbsp;的',
+    cancelBtn: '不&nbsp;&nbsp;行'
+});</code></pre>
+        <!-- demo代码结束 -->
+
+        <h4>事件</h4>
+        <!-- demo代码开始 -->
         <button class="imodal-btn" data-options="url:'test.html',onLoad:function(){alert('页面加载完毕')}">加载完毕</button>
         <pre><code class="javascript">$("body").iModal({
     title  : '加载完毕',
@@ -117,8 +139,18 @@
         alert('页面加载完毕');
     }
 });</code></pre>
+        <button class="imodal-btn" data-options="okBtn:'好&nbsp;&nbsp;的',cancelBtn:'不&nbsp;&nbsp;行',url:'test.html',cancelEvent:function(){alert('你点击了不行')},okEvent:function(){alert('你点击了好的')}">按钮单击事件</button>
+        <pre><code class="javascript">$("body").iModal({
+    title  : '加载完毕',
+    url    : 'test.html',
+    okBtn  : '好&nbsp;&nbsp;的',
+    cancelBtn: '不&nbsp;&nbsp;行',
+    okEvent:function(){alert('你点击了好的')},
+    cancelEvent:function(){alert('你点击了不行')},
+});</code></pre>
         <!-- demo代码结束 -->
 
+        <h4>可选功能</h4>
         <!-- demo代码开始 -->
         <select id="animateSel" style="width:200px;margin-top:10px;">
                 <optgroup label="Attention Seekers">

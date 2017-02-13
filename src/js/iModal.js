@@ -22,25 +22,20 @@ if (typeof jQuery === 'undefined') {
         isShow : false,									//是否已经显示
         isDebug: true,                                  //debug是否打开
         isDrag : true,                                  //是否支持拖拽
+        isShowBtn : true,                               //是否显示确认取消按钮
         url : null,										//弹出层的内容可以是某个url路径，优先级最高
         innerHtml : "",									//弹出层的内容可以是某个html内容，优先级其次
-        invokeElemId : "",							//弹出层的内容可以是页面某ID元素，优先级最低
+        invokeElemId : "",							    //弹出层的内容可以是页面某ID元素，优先级最低
         keyboard : true,								//键盘上的 esc 键被按下时关闭模态框
-        okBtn : "确定",                                  //按钮的文字
-        cancelBtn : "取消",                              //按钮的文字
+        okBtn : "确&nbsp;&nbsp;定",                      //按钮的文字
+        cancelBtn : "取&nbsp;&nbsp;消",                  //按钮的文字
         top : "50%",
         left : "50%",
-        showButtonRow : false,
-        messageIcon : "window.gif",
-        messageTitle : "",
-        message : "",
-        showMessageRow : false,
         autoClose : null,
         showCloseButton : true,
 
         //以下是事件的配置
-        onLoad : function(){                            //弹出层加载完毕，主要是iframe加载
-        },
+        onLoad : null,                                  //弹出层加载完毕，主要是iframe加载
         okEvent : null, 								//点击确定后调用的方法
         cancelEvent : null 								//点击取消及关闭后调用的方法
 	}
@@ -64,21 +59,26 @@ if (typeof jQuery === 'undefined') {
                 '   <div class="'+csspre+'-title" id=""></div>'+
                 '</div>'+
                 '<div class="'+csspre+'-body"></div>'+
-                '<div class="'+csspre+'-footer">'+
-                '	<button type="button" class="'+csspre+'-btn">确&nbsp;&nbsp;认</button>'+
-                '	<button type="button" class="'+csspre+'-cancel '+csspre+'-btn" data-close="true">取&nbsp;&nbsp;消</button>'+
-                '</div>'+
                 '</div>');
             var $back = $('<div id="backdrop'+(arg.id ? arg.id : "" )+'" class="'+csspre+'-backdrop" style=""></div>');
+            var $footer= $('<div class="'+csspre+'-footer"></div>');
+            var $btnSure = $('<button type="button" class="'+csspre+'-btn">'+arg.okBtn+'</button>');
+            var $btnCancel = $('<button type="button" class="'+csspre+'-btn" style="margin-left:10px;">'+arg.cancelBtn+'</button>');
+
             $targets.append($modal);
             $targets.append($back);
             this.$targets = $targets;
             this.$back  = $back;
             this.$modal = $modal;
-            this.$header= $("."+csspre+"-header",$modal);
-            this.$footer= $("."+csspre+"-footer",$modal);
-            this.$bodyer= $("."+csspre+"-body",$modal);
             this.$title = $("."+csspre+"-title",$modal);
+            this.$header= $("."+csspre+"-header",$modal);
+            this.$bodyer= $("."+csspre+"-body",$modal);
+            this.$content= $("."+csspre+"-content",$modal);
+            if(arg.isShowBtn){
+                this.$content.append($footer);
+                $footer.append($btnSure).append($btnCancel);
+                this.$footer= $footer;
+            }
 
             arg.isShow = true;
 			//设置动画效果
@@ -119,11 +119,11 @@ if (typeof jQuery === 'undefined') {
             $this.escape();
             $this.console("Onload 开始加载...");
             if(!arg.url) {
-                arg.onLoad();
+                arg.onLoad ? arg.onLoad() : '';
                 $this.console("Onload 加载完毕...");
             }else{
                 $("iframe",$this.$modal).load(function(){
-                    arg.onLoad();
+                    arg.onLoad ? arg.onLoad() : '';
                     $this.console("Onload 加载完毕...");
                 });
             }
@@ -133,6 +133,17 @@ if (typeof jQuery === 'undefined') {
                 $this.$title.css("cursor","move");
                 $this.drag($this.$modal);
             }
+
+            //点击确认按钮
+            $btnSure.on("click.imodal",function(){
+                arg.okEvent ? arg.okEvent() : '';
+            });
+            //点击取消按钮
+            $btnCancel.on("click.imodal",function(){
+                arg.cancelEvent ? arg.cancelEvent() : '';
+                $this.hidden();
+            });
+
 		},
 		hidden  : function(){
             this.options.isShow = false;
@@ -167,8 +178,9 @@ if (typeof jQuery === 'undefined') {
                 }else{
                     this.$modal.css({"left":"50%","top":"50%","marginTop":("-"+ h/2 +"px")});
                 }
-                if((h - hh - fh) > 0){
-                    this.$bodyer.height(h - hh - fh);
+                var bh = this.options.isShowBtn ? (h - hh - fh) : (h - hh);
+                if(bh > 0){
+                    this.$bodyer.height(bh);
                 }
             }
 		},
