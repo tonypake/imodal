@@ -1,4 +1,4 @@
-# ![Project Icon{100x100}](./favicon.ico)[iModal](https://github.com/smachen/iModal.git) #
+# [![Project Icon](./favicon.ico)iModal](https://github.com/smachen/iModal.git) #
 ### 演示地址： [imodal.github.io](https://imodal.github.io) ###
 
 ## 哪些功能 ##
