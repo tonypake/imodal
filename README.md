@@ -1,5 +1,5 @@
-# [iModal](https://github.com/smachen/iModal.git)  ![Project Icon](./favicon.ico)
-### 演示地址： [imodal.github.io](https://imodal.github.io) ###
+# [![Project Icon](./favicon.ico '项目logo')](https://github.com/smachen/iModal.git)  
+### iModal 演示地址： [imodal.github.io](https://imodal.github.io) ###
 
 ## 哪些功能 ##
   - [x] 自定义弹出层的配置
